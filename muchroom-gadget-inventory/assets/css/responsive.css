@@ -1,0 +1,230 @@
+/* ==========================================================================
+   Responsive Styles - Mobile-first breakpoint typography & layout
+   ========================================================================== */
+
+/* ---- Mobile First (Base: < 640px) ---- */
+
+/* Typography */
+.mgi-page h1, .mgi-page .heading { font-size: 24px; }
+.mgi-page h2, .mgi-page .subheading { font-size: 18px; }
+.mgi-page p, .mgi-page .body-text { font-size: 14px; }
+.mgi-page .btn-text, .mgi-page .pill-btn { font-size: 12px; }
+
+/* Single column layout */
+.mgi-grid-2,
+.mgi-grid-3,
+.mgi-grid-4 {
+    grid-template-columns: 1fr;
+}
+
+/* Bento grid - single column */
+.bento-grid {
+    grid-template-columns: 1fr;
+}
+
+.bento-2x1,
+.bento-2x2,
+.bento-4x1 {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+/* Navigation - hamburger on mobile */
+.mgi-hamburger {
+    display: flex;
+}
+
+.mgi-nav-links {
+    display: none;
+}
+
+.mgi-nav-staff .staff-name {
+    display: none;
+}
+
+.mgi-nav-clock {
+    font-size: 12px;
+    padding: 3px 8px;
+}
+
+/* Content padding */
+.mgi-content {
+    padding: 16px;
+}
+
+/* Footer stacked */
+.mgi-footer-inner {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+}
+
+/* Table responsive */
+.mgi-table {
+    font-size: 12px;
+}
+
+.mgi-table th,
+.mgi-table td {
+    padding: 8px 10px;
+}
+
+/* Modal full width */
+.mgi-modal {
+    width: 95%;
+    padding: 20px;
+    border-radius: var(--radius-lg);
+}
+
+/* Filter bar vertical */
+.filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.filter-bar .mgi-input,
+.filter-bar .mgi-select {
+    width: 100%;
+    min-width: unset;
+}
+
+/* Receipt - 80mm already handled */
+
+/* ---- Tablet (640px - 767px) ---- */
+@media (min-width: 640px) {
+    /* Two-column grid */
+    .mgi-grid-2,
+    .mgi-grid-3,
+    .mgi-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Bento 2-column */
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bento-2x1 { grid-column: span 2; }
+    .bento-2x2 { grid-column: span 2; grid-row: span 2; }
+    .bento-4x1 { grid-column: span 2; }
+
+    .filter-bar {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .filter-bar .mgi-input,
+    .filter-bar .mgi-select {
+        width: auto;
+        min-width: 140px;
+    }
+}
+
+/* ---- Tablet Large (768px - 1023px) ---- */
+@media (min-width: 768px) {
+    /* Typography */
+    .mgi-page h1, .mgi-page .heading { font-size: 36px; }
+    .mgi-page h2, .mgi-page .subheading { font-size: 28px; }
+    .mgi-page p, .mgi-page .body-text { font-size: 16px; }
+    .mgi-page .btn-text, .mgi-page .pill-btn { font-size: 14px; }
+
+    /* Condensed horizontal nav */
+    .mgi-hamburger {
+        display: none;
+    }
+
+    .mgi-nav-links {
+        display: flex;
+    }
+
+    .mgi-nav-links a {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .mgi-nav-staff .staff-name {
+        display: inline;
+    }
+
+    .mgi-content {
+        padding: 20px;
+    }
+
+    .mgi-footer-inner {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .mgi-modal {
+        width: 90%;
+        padding: 28px;
+    }
+}
+
+/* ---- Desktop (1024px+) ---- */
+@media (min-width: 1024px) {
+    /* Typography */
+    .mgi-page h1, .mgi-page .heading { font-size: 48px; }
+    .mgi-page h2, .mgi-page .subheading { font-size: 36px; }
+    .mgi-page p, .mgi-page .body-text { font-size: 18px; }
+    .mgi-page .btn-text, .mgi-page .pill-btn { font-size: 16px; }
+
+    /* Full horizontal nav */
+    .mgi-nav-links a {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .mgi-content {
+        padding: 24px;
+    }
+
+    /* Grids */
+    .mgi-grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .mgi-grid-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Bento full layout */
+    .bento-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .bento-2x1 { grid-column: span 2; }
+    .bento-2x2 { grid-column: span 2; grid-row: span 2; }
+    .bento-4x1 { grid-column: span 4; }
+}
+
+/* ---- Large Desktop (1440px+) ---- */
+@media (min-width: 1440px) {
+    .mgi-content {
+        max-width: 1600px;
+    }
+}
+
+/* Print styles for receipt */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    .receipt-print-area,
+    .receipt-print-area * {
+        visibility: visible;
+    }
+
+    .receipt-print-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 80mm;
+    }
+
+    @page {
+        size: 80mm auto;
+        margin: 0;
+    }
+}

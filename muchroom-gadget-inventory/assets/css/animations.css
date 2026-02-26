@@ -1,0 +1,207 @@
+/* ==========================================================================
+   Animations - Letter reveal, page transitions, loading, beam border
+   ========================================================================== */
+
+/* Letter-by-letter reveal animation */
+.letter-reveal .letter {
+    display: inline-block;
+    opacity: 0;
+    transform: scale(0.5);
+    animation: letterReveal 0.4s ease forwards;
+}
+
+@keyframes letterReveal {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) translateY(10px);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.1) translateY(-2px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.letter-reveal .letter-space {
+    display: inline-block;
+    width: 0.3em;
+}
+
+/* Page Transition */
+.page-transition-out {
+    animation: pageOut 350ms ease-in-out forwards;
+}
+
+.page-transition-in {
+    animation: pageIn 350ms ease-in-out forwards;
+}
+
+@keyframes pageOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+}
+
+@keyframes pageIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Three-dot loading animation */
+.loading-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 40px;
+}
+
+.loading-dots .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--primary);
+    animation: dotPulse 1.2s ease-in-out infinite;
+}
+
+.loading-dots .dot:nth-child(2) {
+    animation-delay: 200ms;
+}
+
+.loading-dots .dot:nth-child(3) {
+    animation-delay: 400ms;
+}
+
+@keyframes dotPulse {
+    0%, 100% {
+        transform: scale(0.5);
+        opacity: 0.2;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* Beam border animation - conic gradient border */
+@keyframes beamSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.beam-border {
+    position: relative;
+    overflow: hidden;
+}
+
+.beam-border::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        transparent 0deg,
+        var(--primary-light) 60deg,
+        var(--primary) 120deg,
+        transparent 180deg,
+        transparent 360deg
+    );
+    animation: beamSpin 3s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.beam-border:hover::after {
+    opacity: 0.6;
+}
+
+.beam-border > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Fade in animation */
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Staggered fade in */
+.stagger-in > * {
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.stagger-in > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-in > *:nth-child(2) { animation-delay: 0.10s; }
+.stagger-in > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-in > *:nth-child(4) { animation-delay: 0.20s; }
+.stagger-in > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-in > *:nth-child(6) { animation-delay: 0.30s; }
+.stagger-in > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger-in > *:nth-child(8) { animation-delay: 0.40s; }
+.stagger-in > *:nth-child(9) { animation-delay: 0.45s; }
+.stagger-in > *:nth-child(10) { animation-delay: 0.50s; }
+
+/* Pulse glow */
+.pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 5px rgba(108, 99, 255, 0.2); }
+    50% { box-shadow: 0 0 20px rgba(108, 99, 255, 0.4); }
+}
+
+/* Slide up animation */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-up {
+    animation: slideUp 0.6s ease forwards;
+}
+
+/* Float animation for landing page elements */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+
+.float-anim {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Shimmer loading placeholder */
+.shimmer {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: var(--radius-md);
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
