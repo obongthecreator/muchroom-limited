@@ -7,8 +7,8 @@ class MGI_Orders {
         global $wpdb;
         $prefix = MGI_Database::get_prefix();
 
-        // Generate unique order number.
-        $order_number = 'MR-' . strtoupper( wp_generate_password( 6, false ) );
+        // Generate unique order number using timestamp and random suffix.
+        $order_number = 'MR-' . gmdate( 'ymd' ) . '-' . strtoupper( substr( uniqid(), -5 ) );
 
         // Create form hash to prevent duplicate submissions.
         $form_hash = hash( 'sha256', wp_json_encode( $data ) . microtime() );

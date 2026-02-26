@@ -146,7 +146,7 @@ async function printViaBluetooth(order) {
         showToast('Receipt printed successfully!', 'success');
         server.disconnect();
     } catch (e) {
-        console.log('Bluetooth print failed, trying fallback', e);
+        console.warn('Bluetooth print failed:', e.message || e);
         throw e;
     }
 }
