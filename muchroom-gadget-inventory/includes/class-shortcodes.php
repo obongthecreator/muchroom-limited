@@ -150,6 +150,8 @@ class MGI_Shortcodes {
 	 * Enqueue CSS and JS for the given page (same logic as the main plugin class).
 	 */
 	private static function enqueue_assets( $page, $branch = '' ) {
+		wp_enqueue_script( 'iconify', 'https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js', array(), '2.3.0', false );
+
 		wp_enqueue_style( 'mgi-animations', MGI_PLUGIN_URL . 'assets/css/animations.css', array(), MGI_VERSION );
 		wp_enqueue_style( 'mgi-responsive', MGI_PLUGIN_URL . 'assets/css/responsive.css', array(), MGI_VERSION );
 		wp_enqueue_style( 'mgi-main', MGI_PLUGIN_URL . 'assets/css/main.css', array(), MGI_VERSION );
