@@ -4,8 +4,8 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$branch_slug = Muchroom_Gadget_Inventory::get_current_branch();
-$branch_name = Muchroom_Gadget_Inventory::get_branch_name( $branch_slug );
+$branch = Muchroom_Gadget_Inventory::get_current_branch();
+$branch_name = Muchroom_Gadget_Inventory::get_branch_name( $branch );
 ?>
 <!DOCTYPE html>
 <html lang="en">

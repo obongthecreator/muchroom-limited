@@ -63,7 +63,7 @@ class Muchroom_Gadget_Inventory {
         add_rewrite_rule( '^muchroom/?$', 'index.php?mgi_page=branches', 'top' );
 
         // Branch-specific routes (e.g. /muchroom/nsukka/home/).
-        $branches = array( 'nsukka', 'lagos', 'enugu', 'owerri' );
+        $branches = array_keys( self::get_branches() );
         foreach ( $branches as $branch ) {
             add_rewrite_rule( '^muchroom/' . $branch . '/?$', 'index.php?mgi_page=landing&mgi_branch=' . $branch, 'top' );
             add_rewrite_rule( '^muchroom/' . $branch . '/login/?$', 'index.php?mgi_page=login&mgi_branch=' . $branch, 'top' );
