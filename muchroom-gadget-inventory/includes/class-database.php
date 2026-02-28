@@ -157,13 +157,13 @@ class MGI_Database {
 
         // Default categories.
         $categories = array(
-            array( 'name' => 'Projectors',          'slug' => 'projectors',          'icon' => '📽️' ),
-            array( 'name' => 'Laptops',              'slug' => 'laptops',              'icon' => '💻' ),
-            array( 'name' => 'Bluetooth Speakers',   'slug' => 'bluetooth-speakers',   'icon' => '🔊' ),
-            array( 'name' => 'Phones',               'slug' => 'phones',               'icon' => '📱' ),
-            array( 'name' => 'Phone Accessories',    'slug' => 'phone-accessories',    'icon' => '🎧' ),
-            array( 'name' => 'Laptop Accessories',   'slug' => 'laptop-accessories',   'icon' => '🖱️' ),
-            array( 'name' => 'General Gadgets',      'slug' => 'general-gadgets',      'icon' => '⚡' ),
+            array( 'name' => 'Projectors',          'slug' => 'projectors',          'icon' => 'solar:videocamera-linear' ),
+            array( 'name' => 'Laptops',              'slug' => 'laptops',              'icon' => 'solar:laptop-linear' ),
+            array( 'name' => 'Bluetooth Speakers',   'slug' => 'bluetooth-speakers',   'icon' => 'solar:speaker-linear' ),
+            array( 'name' => 'Phones',               'slug' => 'phones',               'icon' => 'solar:smartphone-linear' ),
+            array( 'name' => 'Phone Accessories',    'slug' => 'phone-accessories',    'icon' => 'solar:headphones-round-linear' ),
+            array( 'name' => 'Laptop Accessories',   'slug' => 'laptop-accessories',   'icon' => 'solar:mouse-linear' ),
+            array( 'name' => 'General Gadgets',      'slug' => 'general-gadgets',      'icon' => 'solar:bolt-linear' ),
         );
 
         foreach ( $categories as $cat ) {

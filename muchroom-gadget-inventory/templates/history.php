@@ -25,7 +25,7 @@ $today = current_time( 'Y-m-d' );
 <div class="page-header">
     <h1 class="heading"><?php echo esc_html( $page_title ); ?></h1>
     <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/' . $history_type . '/' ) ); ?>" class="pill-btn pill-btn-outline btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
-        ← Back to <?php echo esc_html( ucfirst( $history_type ) ); ?>
+        <iconify-icon icon="solar:arrow-left-linear"></iconify-icon> Back to <?php echo esc_html( ucfirst( $history_type ) ); ?>
     </a>
 </div>
 
@@ -39,7 +39,7 @@ $today = current_time( 'Y-m-d' );
             <label style="margin-bottom:4px;">End Date</label>
             <input type="date" id="history-end-date" class="mgi-input" value="<?php echo esc_attr( $today ); ?>" />
         </div>
-        <button class="pill-btn beam-btn btn-text" onclick="loadHistory()" style="align-self:flex-end;">🔍 Filter</button>
+        <button class="pill-btn beam-btn btn-text" onclick="loadHistory()" style="align-self:flex-end;"><iconify-icon icon="solar:magnifer-linear"></iconify-icon> Filter</button>
     </div>
 
     <div id="history-content">
@@ -97,7 +97,7 @@ function loadSalesHistory(start, end, container) {
             html += '<td class="amount fw-bold">' + formatNaira(o.grand_total) + '</td>';
             html += '<td>' + (o.staff_name || '') + '</td>';
             html += '<td>' + (o.created_at || '') + '</td>';
-            html += '<td><button class="pill-btn pill-btn-glass btn-text" style="padding:4px 12px;font-size:11px;" onclick="reprintReceipt(' + o.id + ')">🖨️</button></td>';
+            html += '<td><button class="pill-btn pill-btn-glass btn-text" style="padding:4px 12px;font-size:11px;" onclick="reprintReceipt(' + o.id + ')"><iconify-icon icon="solar:printer-linear"></iconify-icon></button></td>';
             html += '</tr>';
         });
 

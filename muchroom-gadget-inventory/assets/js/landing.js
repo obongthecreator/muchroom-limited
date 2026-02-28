@@ -39,19 +39,19 @@ function initNoodleBackground() {
     svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
 
     var devices = [
-        { icon: '📱', x: 120, y: 150 },
-        { icon: '💻', x: 350, y: 80 },
-        { icon: '🔊', x: 600, y: 200 },
-        { icon: '📽️', x: 850, y: 100 },
-        { icon: '🎧', x: 1100, y: 180 },
-        { icon: '⌨️', x: 200, y: 450 },
-        { icon: '🖱️', x: 500, y: 550 },
-        { icon: '📱', x: 750, y: 480 },
-        { icon: '💻', x: 1000, y: 400 },
-        { icon: '⚡', x: 1250, y: 300 },
-        { icon: '🔊', x: 300, y: 700 },
-        { icon: '📽️', x: 700, y: 750 },
-        { icon: '🎧', x: 1100, y: 650 },
+        { icon: '⬡', x: 120, y: 150 },
+        { icon: '◇', x: 350, y: 80 },
+        { icon: '○', x: 600, y: 200 },
+        { icon: '△', x: 850, y: 100 },
+        { icon: '□', x: 1100, y: 180 },
+        { icon: '⬟', x: 200, y: 450 },
+        { icon: '◎', x: 500, y: 550 },
+        { icon: '⬡', x: 750, y: 480 },
+        { icon: '◇', x: 1000, y: 400 },
+        { icon: '✦', x: 1250, y: 300 },
+        { icon: '○', x: 300, y: 700 },
+        { icon: '△', x: 700, y: 750 },
+        { icon: '□', x: 1100, y: 650 },
     ];
 
     // Draw connection lines between nearby devices

@@ -28,7 +28,7 @@ $branch_name = Muchroom_Gadget_Inventory::get_branch_name( $branch );
 
 <div class="landing-page">
     <div class="landing-hero">
-        <div class="hero-badge">🔜 Coming Soon</div>
+        <div class="hero-badge"><iconify-icon icon="solar:clock-circle-linear"></iconify-icon> Coming Soon</div>
 
         <h1 class="heading font-display" style="margin-bottom:16px;">
             <span style="background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
@@ -41,11 +41,11 @@ $branch_name = Muchroom_Gadget_Inventory::get_branch_name( $branch );
         </p>
 
         <div class="glass-card" style="padding:32px;margin-top:24px;max-width:400px;width:100%;text-align:center;">
-            <span style="font-size:64px;display:block;margin-bottom:16px;">🚧</span>
+            <iconify-icon icon="solar:danger-triangle-linear" style="font-size:64px;display:block;margin-bottom:16px;"></iconify-icon>
             <h3 class="font-display" style="font-size:20px;margin-bottom:8px;">Under Construction</h3>
             <p class="text-muted" style="font-size:14px;margin-bottom:20px;">This branch will be available once setup is complete. Please check back later.</p>
             <a href="<?php echo esc_url( home_url( '/muchroom/' ) ); ?>" class="pill-btn beam-btn btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
-                ← Back to Branches
+                <iconify-icon icon="solar:arrow-left-linear"></iconify-icon> Back to Branches
             </a>
         </div>
     </div>

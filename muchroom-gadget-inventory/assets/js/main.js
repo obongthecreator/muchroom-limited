@@ -76,18 +76,18 @@ function initNoodleBg() {
     svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
 
     var devices = [
-        { icon: '📱', x: 100, y: 120 },
-        { icon: '💻', x: 400, y: 200 },
-        { icon: '🔊', x: 700, y: 100 },
-        { icon: '📽️', x: 1000, y: 250 },
-        { icon: '🎧', x: 1300, y: 150 },
-        { icon: '⌨️', x: 250, y: 500 },
-        { icon: '🖱️', x: 550, y: 600 },
-        { icon: '📱', x: 900, y: 500 },
-        { icon: '💻', x: 1200, y: 550 },
-        { icon: '⚡', x: 150, y: 800 },
-        { icon: '🔊', x: 600, y: 780 },
-        { icon: '📽️', x: 1050, y: 750 },
+        { icon: '⬡', x: 100, y: 120 },
+        { icon: '◇', x: 400, y: 200 },
+        { icon: '○', x: 700, y: 100 },
+        { icon: '△', x: 1000, y: 250 },
+        { icon: '□', x: 1300, y: 150 },
+        { icon: '⬟', x: 250, y: 500 },
+        { icon: '◎', x: 550, y: 600 },
+        { icon: '⬡', x: 900, y: 500 },
+        { icon: '◇', x: 1200, y: 550 },
+        { icon: '✦', x: 150, y: 800 },
+        { icon: '○', x: 600, y: 780 },
+        { icon: '△', x: 1050, y: 750 },
     ];
 
     for (var i = 0; i < devices.length; i++) {

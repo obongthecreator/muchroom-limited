@@ -20,10 +20,10 @@ foreach ( $orders as $o ) {
     <h1 class="heading">Today's Sales</h1>
     <div class="flex gap-8">
         <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/sales/history/' ) ); ?>" class="pill-btn pill-btn-outline btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
-            📋 Sales History
+            <iconify-icon icon="solar:clipboard-list-linear"></iconify-icon> Sales History
         </a>
         <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/take-order/' ) ); ?>" class="pill-btn beam-btn btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
-            ➕ New Order
+            <iconify-icon icon="solar:add-circle-linear"></iconify-icon> New Order
         </a>
     </div>
 </div>
@@ -71,7 +71,7 @@ foreach ( $orders as $o ) {
                         <td><?php echo esc_html( gmdate( 'H:i', strtotime( $order->created_at ) ) ); ?></td>
                         <td>
                             <button class="pill-btn pill-btn-glass btn-text" style="padding:4px 12px;font-size:11px;" onclick="reprintReceipt(<?php echo intval( $order->id ); ?>)">
-                                🖨️ Receipt
+                                <iconify-icon icon="solar:printer-linear"></iconify-icon> Receipt
                             </button>
                         </td>
                     </tr>

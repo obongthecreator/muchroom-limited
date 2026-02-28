@@ -28,22 +28,22 @@ $today = current_time( 'Y-m-d' );
 <!-- KPI Row (1x1 each) -->
 <div class="bento-grid mb-24">
     <div class="glass-card kpi-card bento-1x1">
-        <div class="kpi-icon">💵</div>
+        <div class="kpi-icon"><iconify-icon icon="solar:wallet-money-linear"></iconify-icon></div>
         <div class="kpi-value" id="kpi-total-sales">₦0</div>
         <div class="kpi-label">Total Sales</div>
     </div>
     <div class="glass-card kpi-card bento-1x1">
-        <div class="kpi-icon">🧾</div>
+        <div class="kpi-icon"><iconify-icon icon="solar:document-text-linear"></iconify-icon></div>
         <div class="kpi-value" id="kpi-orders">0</div>
         <div class="kpi-label">Orders</div>
     </div>
     <div class="glass-card kpi-card bento-1x1">
-        <div class="kpi-icon">💵</div>
+        <div class="kpi-icon"><iconify-icon icon="solar:wallet-money-linear"></iconify-icon></div>
         <div class="kpi-value" id="kpi-cash">₦0</div>
         <div class="kpi-label">Cash</div>
     </div>
     <div class="glass-card kpi-card bento-1x1">
-        <div class="kpi-icon">💳</div>
+        <div class="kpi-icon"><iconify-icon icon="solar:card-transfer-linear"></iconify-icon></div>
         <div class="kpi-value" id="kpi-transfer">₦0</div>
         <div class="kpi-label">Transfer</div>
     </div>

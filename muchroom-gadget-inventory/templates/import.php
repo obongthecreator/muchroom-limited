@@ -17,10 +17,10 @@ $imports    = MGI_Inventory::get_imports( $today );
     <h1 class="heading">Import Stock</h1>
     <div class="flex gap-8">
         <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/import/history/' ) ); ?>" class="pill-btn pill-btn-outline btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
-            📋 Import History
+            <iconify-icon icon="solar:clipboard-list-linear"></iconify-icon> Import History
         </a>
         <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/inventory/' ) ); ?>" class="pill-btn pill-btn-glass btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
-            📦 View Inventory
+            <iconify-icon icon="solar:box-linear"></iconify-icon> View Inventory
         </a>
     </div>
 </div>
@@ -60,7 +60,7 @@ $imports    = MGI_Inventory::get_imports( $today );
         </div>
 
         <div class="mt-16">
-            <button type="submit" class="pill-btn beam-btn btn-text">📥 Import Stock</button>
+            <button type="submit" class="pill-btn beam-btn btn-text"><iconify-icon icon="solar:import-linear"></iconify-icon> Import Stock</button>
         </div>
     </form>
 </div>

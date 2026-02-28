@@ -1027,3 +1027,19 @@ body.mgi-page::before {
 .justify-between { justify-content: space-between; }
 .hidden { display: none !important; }
 .w-full { width: 100%; }
+
+/* Iconify icon integration */
+iconify-icon {
+    display: inline-flex;
+    vertical-align: -0.125em;
+    width: 1em;
+    height: 1em;
+}
+.cat-icon iconify-icon,
+.feature-icon iconify-icon,
+.branch-icon iconify-icon {
+    font-size: inherit;
+}
+.kpi-icon iconify-icon {
+    font-size: inherit;
+}

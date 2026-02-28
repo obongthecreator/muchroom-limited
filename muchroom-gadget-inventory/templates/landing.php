@@ -21,7 +21,7 @@
 
 <div class="landing-page">
     <div class="landing-hero">
-        <div class="hero-badge">⚡ <?php echo esc_html( Muchroom_Gadget_Inventory::get_branch_name() ); ?></div>
+        <div class="hero-badge"><iconify-icon icon="solar:bolt-linear"></iconify-icon> <?php echo esc_html( Muchroom_Gadget_Inventory::get_branch_name() ); ?></div>
 
         <h1 class="letter-reveal heading" style="visibility:hidden;">Muchroom Limited</h1>
 
@@ -31,32 +31,32 @@
 
         <div class="hero-actions">
             <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/login/' ) ); ?>" class="pill-btn beam-btn btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
-                🔐 Staff Login
+                <iconify-icon icon="solar:lock-keyhole-linear"></iconify-icon> Staff Login
             </a>
             <a href="<?php echo esc_url( home_url( '/muchroom/' ) ); ?>" class="pill-btn pill-btn-glass btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
-                ← All Branches
+                <iconify-icon icon="solar:arrow-left-linear"></iconify-icon> All Branches
             </a>
         </div>
     </div>
 
     <div class="landing-features stagger-in" id="features">
         <div class="glass-card landing-feature-card">
-            <span class="feature-icon">📦</span>
+            <span class="feature-icon"><iconify-icon icon="solar:box-linear"></iconify-icon></span>
             <h3>Inventory Tracking</h3>
             <p>Real-time stock management with opening and closing values, automated imports and sales tracking.</p>
         </div>
         <div class="glass-card landing-feature-card">
-            <span class="feature-icon">🧾</span>
+            <span class="feature-icon"><iconify-icon icon="solar:document-text-linear"></iconify-icon></span>
             <h3>Smart Orders</h3>
             <p>Intelligent order forms with automatic calculations, split payments, and 80mm thermal receipt printing.</p>
         </div>
         <div class="glass-card landing-feature-card">
-            <span class="feature-icon">📊</span>
+            <span class="feature-icon"><iconify-icon icon="solar:chart-2-linear"></iconify-icon></span>
             <h3>Analytics Dashboard</h3>
             <p>Comprehensive analytics with pie charts, graphs, and filters for daily, weekly, monthly, and yearly views.</p>
         </div>
         <div class="glass-card landing-feature-card">
-            <span class="feature-icon">💰</span>
+            <span class="feature-icon"><iconify-icon icon="solar:money-bag-linear"></iconify-icon></span>
             <h3>Financial Summary</h3>
             <p>Complete financial overview with cash tracking, transfer records, and automated calculations.</p>
         </div>

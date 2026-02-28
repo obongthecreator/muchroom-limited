@@ -30,22 +30,22 @@ $stats      = MGI_Admin_Panel::get_dashboard_stats();
 <!-- Admin Stats -->
 <div class="mgi-grid stagger-in mb-24" style="grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));">
     <div class="glass-card kpi-card">
-        <div class="kpi-icon">📦</div>
+        <div class="kpi-icon"><iconify-icon icon="solar:box-linear"></iconify-icon></div>
         <div class="kpi-value"><?php echo intval( $stats['total_products'] ); ?></div>
         <div class="kpi-label">Products</div>
     </div>
     <div class="glass-card kpi-card">
-        <div class="kpi-icon">📂</div>
+        <div class="kpi-icon"><iconify-icon icon="solar:folder-linear"></iconify-icon></div>
         <div class="kpi-value"><?php echo intval( $stats['total_categories'] ); ?></div>
         <div class="kpi-label">Categories</div>
     </div>
     <div class="glass-card kpi-card">
-        <div class="kpi-icon">👥</div>
+        <div class="kpi-icon"><iconify-icon icon="solar:users-group-two-rounded-linear"></iconify-icon></div>
         <div class="kpi-value"><?php echo intval( $stats['total_staff'] ); ?></div>
         <div class="kpi-label">Staff</div>
     </div>
     <div class="glass-card kpi-card">
-        <div class="kpi-icon">💵</div>
+        <div class="kpi-icon"><iconify-icon icon="solar:wallet-money-linear"></iconify-icon></div>
         <div class="kpi-value"><?php echo esc_html( '₦' . number_format( $stats['today_sales'], 0 ) ); ?></div>
         <div class="kpi-label">Today's Sales</div>
     </div>
@@ -63,7 +63,7 @@ $stats      = MGI_Admin_Panel::get_dashboard_stats();
     <div class="glass-card mb-24">
         <div class="flex items-center justify-between mb-16">
             <h2 class="font-display" style="font-size:18px;">Products</h2>
-            <button class="pill-btn beam-btn btn-text" onclick="openModal('product-modal'); resetProductForm();">➕ Add Product</button>
+            <button class="pill-btn beam-btn btn-text" onclick="openModal('product-modal'); resetProductForm();"><iconify-icon icon="solar:add-circle-linear"></iconify-icon> Add Product</button>
         </div>
 
         <div class="mgi-table-wrap">
@@ -91,8 +91,8 @@ $stats      = MGI_Admin_Panel::get_dashboard_stats();
                         <td class="amount"><?php echo esc_html( '₦' . number_format( $p->price, 0 ) ); ?></td>
                         <td><?php echo intval( $p->stock ); ?></td>
                         <td>
-                            <button class="pill-btn pill-btn-glass btn-text" style="padding:4px 8px;font-size:11px;" onclick="editProduct(<?php echo intval( $p->id ); ?>, '<?php echo esc_js( $p->product_code ); ?>', '<?php echo esc_js( $p->name ); ?>', '<?php echo esc_js( $p->model ); ?>', '<?php echo esc_js( $p->description ); ?>', <?php echo intval( $p->category_id ); ?>, <?php echo floatval( $p->cost ); ?>, <?php echo floatval( $p->price ); ?>)">✏️</button>
-                            <button class="pill-btn pill-btn-danger btn-text" style="padding:4px 8px;font-size:11px;" onclick="deleteProduct(<?php echo intval( $p->id ); ?>)">🗑️</button>
+                            <button class="pill-btn pill-btn-glass btn-text" style="padding:4px 8px;font-size:11px;" onclick="editProduct(<?php echo intval( $p->id ); ?>, '<?php echo esc_js( $p->product_code ); ?>', '<?php echo esc_js( $p->name ); ?>', '<?php echo esc_js( $p->model ); ?>', '<?php echo esc_js( $p->description ); ?>', <?php echo intval( $p->category_id ); ?>, <?php echo floatval( $p->cost ); ?>, <?php echo floatval( $p->price ); ?>)"><iconify-icon icon="solar:pen-linear"></iconify-icon></button>
+                            <button class="pill-btn pill-btn-danger btn-text" style="padding:4px 8px;font-size:11px;" onclick="deleteProduct(<?php echo intval( $p->id ); ?>)"><iconify-icon icon="solar:trash-bin-minimalistic-linear"></iconify-icon></button>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -107,7 +107,7 @@ $stats      = MGI_Admin_Panel::get_dashboard_stats();
     <div class="glass-card mb-24">
         <div class="flex items-center justify-between mb-16">
             <h2 class="font-display" style="font-size:18px;">Categories</h2>
-            <button class="pill-btn beam-btn btn-text" onclick="openModal('category-modal'); resetCategoryForm();">➕ Add Category</button>
+            <button class="pill-btn beam-btn btn-text" onclick="openModal('category-modal'); resetCategoryForm();"><iconify-icon icon="solar:add-circle-linear"></iconify-icon> Add Category</button>
         </div>
 
         <div class="mgi-table-wrap">
@@ -118,12 +118,12 @@ $stats      = MGI_Admin_Panel::get_dashboard_stats();
                 <tbody>
                     <?php foreach ( $categories as $cat ) : ?>
                     <tr>
-                        <td><?php echo esc_html( $cat->icon ); ?></td>
+                        <td><iconify-icon icon="<?php echo esc_attr( $cat->icon ); ?>"></iconify-icon></td>
                         <td><strong><?php echo esc_html( $cat->name ); ?></strong></td>
                         <td class="text-muted"><?php echo esc_html( $cat->slug ); ?></td>
                         <td>
-                            <button class="pill-btn pill-btn-glass btn-text" style="padding:4px 8px;font-size:11px;" onclick="editCategory(<?php echo intval( $cat->id ); ?>, '<?php echo esc_js( $cat->name ); ?>', '<?php echo esc_js( $cat->icon ); ?>')">✏️</button>
-                            <button class="pill-btn pill-btn-danger btn-text" style="padding:4px 8px;font-size:11px;" onclick="deleteCategory(<?php echo intval( $cat->id ); ?>)">🗑️</button>
+                            <button class="pill-btn pill-btn-glass btn-text" style="padding:4px 8px;font-size:11px;" onclick="editCategory(<?php echo intval( $cat->id ); ?>, '<?php echo esc_js( $cat->name ); ?>', '<?php echo esc_js( $cat->icon ); ?>')"><iconify-icon icon="solar:pen-linear"></iconify-icon></button>
+                            <button class="pill-btn pill-btn-danger btn-text" style="padding:4px 8px;font-size:11px;" onclick="deleteCategory(<?php echo intval( $cat->id ); ?>)"><iconify-icon icon="solar:trash-bin-minimalistic-linear"></iconify-icon></button>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -138,7 +138,7 @@ $stats      = MGI_Admin_Panel::get_dashboard_stats();
     <div class="glass-card mb-24">
         <div class="flex items-center justify-between mb-16">
             <h2 class="font-display" style="font-size:18px;">Staff Users</h2>
-            <button class="pill-btn beam-btn btn-text" onclick="openModal('user-modal'); resetUserForm();">➕ Add User</button>
+            <button class="pill-btn beam-btn btn-text" onclick="openModal('user-modal'); resetUserForm();"><iconify-icon icon="solar:add-circle-linear"></iconify-icon> Add User</button>
         </div>
 
         <div class="mgi-table-wrap">
@@ -156,8 +156,8 @@ $stats      = MGI_Admin_Panel::get_dashboard_stats();
                         <td><?php echo esc_html( $u->phone ); ?></td>
                         <td><?php echo $u->is_active ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>'; ?></td>
                         <td>
-                            <button class="pill-btn pill-btn-glass btn-text" style="padding:4px 8px;font-size:11px;" onclick="editUser(<?php echo intval( $u->id ); ?>, '<?php echo esc_js( $u->username ); ?>', '<?php echo esc_js( $u->full_name ); ?>', '<?php echo esc_js( $u->role ); ?>', '<?php echo esc_js( $u->email ); ?>', '<?php echo esc_js( $u->phone ); ?>', <?php echo intval( $u->is_active ); ?>)">✏️</button>
-                            <button class="pill-btn pill-btn-danger btn-text" style="padding:4px 8px;font-size:11px;" onclick="deleteUser(<?php echo intval( $u->id ); ?>)">🗑️</button>
+                            <button class="pill-btn pill-btn-glass btn-text" style="padding:4px 8px;font-size:11px;" onclick="editUser(<?php echo intval( $u->id ); ?>, '<?php echo esc_js( $u->username ); ?>', '<?php echo esc_js( $u->full_name ); ?>', '<?php echo esc_js( $u->role ); ?>', '<?php echo esc_js( $u->email ); ?>', '<?php echo esc_js( $u->phone ); ?>', <?php echo intval( $u->is_active ); ?>)"><iconify-icon icon="solar:pen-linear"></iconify-icon></button>
+                            <button class="pill-btn pill-btn-danger btn-text" style="padding:4px 8px;font-size:11px;" onclick="deleteUser(<?php echo intval( $u->id ); ?>)"><iconify-icon icon="solar:trash-bin-minimalistic-linear"></iconify-icon></button>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -210,7 +210,7 @@ $stats      = MGI_Admin_Panel::get_dashboard_stats();
                     <input type="number" id="edit-product-price" class="mgi-input" step="0.01" min="0" required />
                 </div>
             </div>
-            <button type="submit" class="pill-btn beam-btn btn-text w-full mt-16">💾 Save Product</button>
+            <button type="submit" class="pill-btn beam-btn btn-text w-full mt-16"><iconify-icon icon="solar:diskette-linear"></iconify-icon> Save Product</button>
         </form>
     </div>
 </div>
@@ -229,10 +229,10 @@ $stats      = MGI_Admin_Panel::get_dashboard_stats();
                 <input type="text" id="edit-category-name" class="mgi-input" required />
             </div>
             <div class="mgi-form-group">
-                <label>Icon (emoji)</label>
-                <input type="text" id="edit-category-icon" class="mgi-input" placeholder="e.g. 📱" />
+                <label>Icon (Iconify name)</label>
+                <input type="text" id="edit-category-icon" class="mgi-input" placeholder="e.g. solar:smartphone-linear" />
             </div>
-            <button type="submit" class="pill-btn beam-btn btn-text w-full mt-16">💾 Save Category</button>
+            <button type="submit" class="pill-btn beam-btn btn-text w-full mt-16"><iconify-icon icon="solar:diskette-linear"></iconify-icon> Save Category</button>
         </form>
     </div>
 </div>
@@ -280,7 +280,7 @@ $stats      = MGI_Admin_Panel::get_dashboard_stats();
                     <input type="checkbox" id="edit-user-active" checked /> Active
                 </label>
             </div>
-            <button type="submit" class="pill-btn beam-btn btn-text w-full mt-16">💾 Save User</button>
+            <button type="submit" class="pill-btn beam-btn btn-text w-full mt-16"><iconify-icon icon="solar:diskette-linear"></iconify-icon> Save User</button>
         </form>
     </div>
 </div>

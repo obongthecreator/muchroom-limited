@@ -39,16 +39,16 @@
                 <div id="login-error" class="text-danger" style="font-size:13px;margin-bottom:12px;display:none;"></div>
 
                 <button type="submit" class="pill-btn beam-btn btn-text w-full" id="login-btn" style="width:100%;margin-top:8px;">
-                    🔐 Login
+                    <iconify-icon icon="solar:lock-keyhole-linear"></iconify-icon> Login
                 </button>
             </form>
 
             <div class="text-center mt-24" style="display:flex;flex-direction:column;gap:8px;align-items:center;">
                 <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/' ) ); ?>" class="text-muted" style="font-size:13px;text-decoration:none;">
-                    ← Back to <?php echo esc_html( Muchroom_Gadget_Inventory::get_branch_name() ); ?>
+                    <iconify-icon icon="solar:arrow-left-linear"></iconify-icon> Back to <?php echo esc_html( Muchroom_Gadget_Inventory::get_branch_name() ); ?>
                 </a>
                 <a href="<?php echo esc_url( home_url( '/muchroom/' ) ); ?>" class="text-muted" style="font-size:13px;text-decoration:none;">
-                    🏢 Switch Branch
+                    <iconify-icon icon="solar:buildings-linear"></iconify-icon> Switch Branch
                 </a>
             </div>
         </div>
@@ -70,7 +70,7 @@ function handleLogin(e) {
 
     mgiAjax('login', { username: username, password: password, branch: branch }, function(err, res) {
         btn.disabled = false;
-        btn.textContent = '🔐 Login';
+        btn.innerHTML = '<iconify-icon icon="solar:lock-keyhole-linear"></iconify-icon> Login';
 
         if (err || !res.success) {
             errorEl.textContent = res && res.data ? res.data.message : 'Login failed';

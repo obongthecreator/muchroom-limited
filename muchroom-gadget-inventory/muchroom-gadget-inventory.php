@@ -106,25 +106,25 @@ class Muchroom_Gadget_Inventory {
             'nsukka' => array(
                 'name'   => 'Nsukka Branch',
                 'city'   => 'Nsukka',
-                'icon'   => '🏪',
+                'icon'   => 'solar:shop-linear',
                 'active' => true,
             ),
             'lagos' => array(
                 'name'   => 'Lagos Branch',
                 'city'   => 'Lagos',
-                'icon'   => '🏬',
+                'icon'   => 'solar:shop-2-linear',
                 'active' => false,
             ),
             'enugu' => array(
                 'name'   => 'Enugu Branch',
                 'city'   => 'Enugu',
-                'icon'   => '🏢',
+                'icon'   => 'solar:buildings-linear',
                 'active' => false,
             ),
             'owerri' => array(
                 'name'   => 'Owerri Branch',
                 'city'   => 'Owerri',
-                'icon'   => '🏣',
+                'icon'   => 'solar:buildings-2-linear',
                 'active' => false,
             ),
         );
@@ -154,6 +154,8 @@ class Muchroom_Gadget_Inventory {
         if ( empty( $page ) ) {
             return;
         }
+
+        wp_enqueue_script( 'iconify', 'https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js', array(), '2.3.0', false );
 
         wp_enqueue_style( 'mgi-animations', MGI_PLUGIN_URL . 'assets/css/animations.css', array(), MGI_VERSION );
         wp_enqueue_style( 'mgi-responsive', MGI_PLUGIN_URL . 'assets/css/responsive.css', array(), MGI_VERSION );

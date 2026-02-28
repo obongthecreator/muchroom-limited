@@ -27,7 +27,7 @@ $branches = Muchroom_Gadget_Inventory::get_branches();
 
 <div class="landing-page">
     <div class="landing-hero" style="flex:0;padding-bottom:20px;">
-        <div class="hero-badge">⚡ Gadget Inventory Management</div>
+        <div class="hero-badge"><iconify-icon icon="solar:bolt-linear"></iconify-icon> Gadget Inventory Management</div>
 
         <h1 class="letter-reveal heading" style="visibility:hidden;">Muchroom Limited</h1>
 
@@ -41,15 +41,15 @@ $branches = Muchroom_Gadget_Inventory::get_branches();
         <?php foreach ( $branches as $slug => $branch ) : ?>
             <?php if ( $branch['active'] ) : ?>
                 <a href="<?php echo esc_url( home_url( '/muchroom/' . $slug . '/' ) ); ?>" class="glass-card branch-card branch-active" onclick="event.preventDefault(); navigateTo(this.href);">
-                    <span class="branch-icon"><?php echo esc_html( $branch['icon'] ); ?></span>
+                    <span class="branch-icon"><iconify-icon icon="<?php echo esc_attr( $branch['icon'] ); ?>"></iconify-icon></span>
                     <span class="branch-name"><?php echo esc_html( $branch['name'] ); ?></span>
-                    <span class="branch-status badge-active">● Active</span>
+                    <span class="branch-status badge-active"><iconify-icon icon="solar:check-circle-linear"></iconify-icon> Active</span>
                 </a>
             <?php else : ?>
                 <a href="<?php echo esc_url( home_url( '/muchroom/' . $slug . '/' ) ); ?>" class="glass-card branch-card branch-coming-soon">
-                    <span class="branch-icon"><?php echo esc_html( $branch['icon'] ); ?></span>
+                    <span class="branch-icon"><iconify-icon icon="<?php echo esc_attr( $branch['icon'] ); ?>"></iconify-icon></span>
                     <span class="branch-name"><?php echo esc_html( $branch['name'] ); ?></span>
-                    <span class="branch-status badge-soon">🔜 Coming Soon</span>
+                    <span class="branch-status badge-soon"><iconify-icon icon="solar:clock-circle-linear"></iconify-icon> Coming Soon</span>
                 </a>
             <?php endif; ?>
         <?php endforeach; ?>
@@ -57,22 +57,22 @@ $branches = Muchroom_Gadget_Inventory::get_branches();
 
     <div class="landing-features stagger-in" id="features" style="margin-top:40px;">
         <div class="glass-card landing-feature-card">
-            <span class="feature-icon">📦</span>
+            <span class="feature-icon"><iconify-icon icon="solar:box-linear"></iconify-icon></span>
             <h3>Inventory Tracking</h3>
             <p>Real-time stock management with opening and closing values, automated imports and sales tracking.</p>
         </div>
         <div class="glass-card landing-feature-card">
-            <span class="feature-icon">🧾</span>
+            <span class="feature-icon"><iconify-icon icon="solar:document-text-linear"></iconify-icon></span>
             <h3>Smart Orders</h3>
             <p>Intelligent order forms with automatic calculations, split payments, and 80mm thermal receipt printing.</p>
         </div>
         <div class="glass-card landing-feature-card">
-            <span class="feature-icon">📊</span>
+            <span class="feature-icon"><iconify-icon icon="solar:chart-2-linear"></iconify-icon></span>
             <h3>Analytics Dashboard</h3>
             <p>Comprehensive analytics with pie charts, graphs, and filters for daily, weekly, monthly, and yearly views.</p>
         </div>
         <div class="glass-card landing-feature-card">
-            <span class="feature-icon">💰</span>
+            <span class="feature-icon"><iconify-icon icon="solar:money-bag-linear"></iconify-icon></span>
             <h3>Financial Summary</h3>
             <p>Complete financial overview with cash tracking, transfer records, and automated calculations.</p>
         </div>

@@ -15,7 +15,7 @@ function generateReceipt(order) {
             '<button class="mgi-modal-close" onclick="closeModal(\'receipt-modal\')">&times;</button></div>' +
             '<div id="receipt-content"></div>' +
             '<div style="margin-top:16px;display:flex;gap:8px;justify-content:center">' +
-            '<button class="pill-btn beam-btn" onclick="printReceipt()">🖨️ Print</button>' +
+            '<button class="pill-btn beam-btn" onclick="printReceipt()"><iconify-icon icon="solar:printer-linear"></iconify-icon> Print</button>' +
             '<button class="pill-btn pill-btn-outline" onclick="closeModal(\'receipt-modal\')">Close</button>' +
             '</div></div>';
         document.body.appendChild(modal);

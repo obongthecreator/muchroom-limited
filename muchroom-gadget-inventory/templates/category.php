@@ -26,11 +26,11 @@ $is_laptop = in_array( $slug, array( 'laptops' ), true );
 
 <div class="page-header">
     <div>
-        <h1 class="heading"><?php echo esc_html( $category->icon . ' ' . $category->name ); ?></h1>
+        <h1 class="heading"><iconify-icon icon="<?php echo esc_attr( $category->icon ); ?>"></iconify-icon> <?php echo esc_html( $category->name ); ?></h1>
         <p class="text-muted body-text" style="font-size:14px;"><?php echo count( $products ); ?> products</p>
     </div>
     <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/home/' ) ); ?>" class="pill-btn pill-btn-outline btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
-        ← Back to Home
+        <iconify-icon icon="solar:arrow-left-linear"></iconify-icon> Back to Home
     </a>
 </div>
 

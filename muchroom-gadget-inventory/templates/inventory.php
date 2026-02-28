@@ -23,10 +23,10 @@ $inventory = MGI_Inventory::get_inventory( $today );
     <h1 class="heading">Stock Inventory</h1>
     <div class="flex gap-8">
         <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/inventory/history/' ) ); ?>" class="pill-btn pill-btn-outline btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
-            📋 History
+            <iconify-icon icon="solar:clipboard-list-linear"></iconify-icon> History
         </a>
         <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/import/' ) ); ?>" class="pill-btn beam-btn btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
-            📥 Import Stock
+            <iconify-icon icon="solar:import-linear"></iconify-icon> Import Stock
         </a>
     </div>
 </div>

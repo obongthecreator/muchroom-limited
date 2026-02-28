@@ -14,7 +14,7 @@ $categories = MGI_Products::get_categories();
 <div class="page-header">
     <h1 class="heading">Take Order</h1>
     <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/sales/history/' ) ); ?>" class="pill-btn pill-btn-outline btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
-        📋 Order History
+        <iconify-icon icon="solar:clipboard-list-linear"></iconify-icon> Order History
     </a>
 </div>
 
@@ -74,9 +74,9 @@ $categories = MGI_Products::get_categories();
             <div class="mgi-form-group">
                 <label>Payment Method</label>
                 <div class="payment-methods">
-                    <button type="button" class="payment-method-btn" data-method="transfer">💳 Transfer/Card</button>
-                    <button type="button" class="payment-method-btn" data-method="cash">💵 Cash</button>
-                    <button type="button" class="payment-method-btn" data-method="both">🔄 Both</button>
+                    <button type="button" class="payment-method-btn" data-method="transfer"><iconify-icon icon="solar:card-transfer-linear"></iconify-icon> Transfer/Card</button>
+                    <button type="button" class="payment-method-btn" data-method="cash"><iconify-icon icon="solar:wallet-money-linear"></iconify-icon> Cash</button>
+                    <button type="button" class="payment-method-btn" data-method="both"><iconify-icon icon="solar:refresh-linear"></iconify-icon> Both</button>
                 </div>
             </div>
         </div>
@@ -93,12 +93,12 @@ $categories = MGI_Products::get_categories();
                     <input type="number" id="cash-amount" class="mgi-input" placeholder="0.00" min="0" step="0.01" />
                 </div>
             </div>
-            <p class="text-muted" style="font-size:12px;margin-top:4px;">💡 Smart fill: adjusting one amount automatically calculates the other.</p>
+            <p class="text-muted" style="font-size:12px;margin-top:4px;"><iconify-icon icon="solar:lightbulb-linear"></iconify-icon> Smart fill: adjusting one amount automatically calculates the other.</p>
         </div>
 
         <div class="mt-16">
             <button type="submit" class="pill-btn beam-btn btn-text" style="width:100%;">
-                ✅ Submit Order
+                <iconify-icon icon="solar:check-circle-linear"></iconify-icon> Submit Order
             </button>
         </div>
     </div>
@@ -113,7 +113,7 @@ $categories = MGI_Products::get_categories();
         </div>
         <div id="order-summary-content"></div>
         <div style="display:flex;gap:8px;margin-top:16px;">
-            <button class="pill-btn beam-btn btn-text" id="confirm-order-btn" style="flex:1;">✅ Confirm</button>
+            <button class="pill-btn beam-btn btn-text" id="confirm-order-btn" style="flex:1;"><iconify-icon icon="solar:check-circle-linear"></iconify-icon> Confirm</button>
             <button class="pill-btn pill-btn-outline btn-text" onclick="closeModal('order-confirm-modal')" style="flex:1;">Cancel</button>
         </div>
     </div>

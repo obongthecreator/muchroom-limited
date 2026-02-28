@@ -15,7 +15,7 @@ $financial = MGI_Financial::get_summary( $today );
 <div class="page-header">
     <h1 class="heading">Financial Summary</h1>
     <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/financial/history/' ) ); ?>" class="pill-btn pill-btn-outline btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
-        📋 Financial History
+        <iconify-icon icon="solar:clipboard-list-linear"></iconify-icon> Financial History
     </a>
 </div>
 
@@ -26,31 +26,31 @@ $financial = MGI_Financial::get_summary( $today );
 
     <div class="mgi-grid stagger-in" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:20px;">
         <div class="glass-card kpi-card">
-            <div class="kpi-icon">💵</div>
+            <div class="kpi-icon"><iconify-icon icon="solar:wallet-money-linear"></iconify-icon></div>
             <div class="kpi-value"><?php echo esc_html( '₦' . number_format( $financial->total_sales, 0 ) ); ?></div>
             <div class="kpi-label">Total Sales</div>
         </div>
 
         <div class="glass-card kpi-card">
-            <div class="kpi-icon">💳</div>
+            <div class="kpi-icon"><iconify-icon icon="solar:card-transfer-linear"></iconify-icon></div>
             <div class="kpi-value"><?php echo esc_html( '₦' . number_format( $financial->transfer_total, 0 ) ); ?></div>
             <div class="kpi-label">Transfers / Cards</div>
         </div>
 
         <div class="glass-card kpi-card">
-            <div class="kpi-icon">💵</div>
+            <div class="kpi-icon"><iconify-icon icon="solar:wallet-money-linear"></iconify-icon></div>
             <div class="kpi-value"><?php echo esc_html( '₦' . number_format( $financial->cash_total, 0 ) ); ?></div>
             <div class="kpi-label">Cash</div>
         </div>
 
         <div class="glass-card kpi-card">
-            <div class="kpi-icon">📦</div>
+            <div class="kpi-icon"><iconify-icon icon="solar:box-linear"></iconify-icon></div>
             <div class="kpi-value"><?php echo esc_html( '₦' . number_format( $financial->old_cash, 0 ) ); ?></div>
             <div class="kpi-label">Old Cash (Yesterday's Cash Left)</div>
         </div>
 
         <div class="glass-card kpi-card pulse-glow" style="border:2px solid var(--primary);">
-            <div class="kpi-icon">🏦</div>
+            <div class="kpi-icon"><iconify-icon icon="solar:bank-linear"></iconify-icon></div>
             <div class="kpi-value text-primary"><?php echo esc_html( '₦' . number_format( $financial->cash_left, 0 ) ); ?></div>
             <div class="kpi-label">Cash Left (Old Cash + Today's Cash)</div>
         </div>
