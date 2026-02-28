@@ -27,7 +27,7 @@ $footer_branch = Muchroom_Gadget_Inventory::get_current_branch();
 window.mgiBranch = '<?php echo esc_js( $footer_branch ); ?>';
 </script>
 
-<?php if ( empty( $GLOBALS['mgi_shortcode_mode'] ) ) : ?>
+<?php if ( ! MGI_Shortcodes::is_shortcode_mode() ) : ?>
 <?php wp_footer(); ?>
 </body>
 </html>

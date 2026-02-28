@@ -9,7 +9,7 @@ $slug     = get_query_var( 'mgi_category' );
 $category = MGI_Products::get_category_by_slug( $slug );
 
 if ( ! $category ) {
-    if ( ! empty( $GLOBALS['mgi_shortcode_mode'] ) ) {
+    if ( MGI_Shortcodes::is_shortcode_mode() ) {
         echo '<p class="mgi-shortcode-error">Category not found. Please specify a valid category slug.</p>';
         return;
     }

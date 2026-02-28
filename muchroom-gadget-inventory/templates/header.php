@@ -9,7 +9,7 @@ $branch = Muchroom_Gadget_Inventory::get_current_branch();
 $branch_name = Muchroom_Gadget_Inventory::get_branch_name();
 $branch_prefix = '/muchroom/' . $branch;
 ?>
-<?php if ( empty( $GLOBALS['mgi_shortcode_mode'] ) ) : ?>
+<?php if ( ! MGI_Shortcodes::is_shortcode_mode() ) : ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

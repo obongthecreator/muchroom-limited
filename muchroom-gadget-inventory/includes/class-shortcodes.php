@@ -17,6 +17,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 class MGI_Shortcodes {
 
 	/**
+	 * Whether templates are currently rendering inside a shortcode.
+	 */
+	private static $shortcode_mode = false;
+
+	/**
+	 * Check if we are currently rendering in shortcode mode.
+	 */
+	public static function is_shortcode_mode() {
+		return self::$shortcode_mode;
+	}
+
+	/**
 	 * Map of shortcode tag => internal page slug.
 	 */
 	private static $shortcode_map = array(
@@ -123,13 +135,13 @@ class MGI_Shortcodes {
 		}
 
 		// Tell templates to skip the full HTML document wrapper.
-		$GLOBALS['mgi_shortcode_mode'] = true;
+		self::$shortcode_mode = true;
 
 		ob_start();
 		include $template;
 		$output = ob_get_clean();
 
-		unset( $GLOBALS['mgi_shortcode_mode'] );
+		self::$shortcode_mode = false;
 
 		return '<div class="mgi-shortcode-wrap mgi-page">' . $output . '</div>';
 	}

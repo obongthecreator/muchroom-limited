@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 $branch = Muchroom_Gadget_Inventory::get_current_branch();
 
 if ( ! MGI_Auth::is_admin() ) {
-    if ( ! empty( $GLOBALS['mgi_shortcode_mode'] ) ) {
+    if ( MGI_Shortcodes::is_shortcode_mode() ) {
         echo '<p class="mgi-shortcode-error">Admin access required. Please log in as an admin.</p>';
         return;
     }
