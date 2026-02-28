@@ -38,26 +38,58 @@ A comprehensive WordPress plugin for managing gadget inventory, sales, orders, a
 3. Visit **Settings → Permalinks** and click "Save Changes" to flush rewrite rules
 4. Access the system at `yoursite.com/muchroom/`
 
+> **No shortcodes or WordPress pages required.** This plugin registers its own custom URL routes automatically. Once installed and activated, all pages below are available immediately — you do **not** need to create any WordPress pages or use shortcodes.
+
 ## Default Login
 - **Username:** `admin`
 - **Password:** `admin123`
 
+## Branches
+
+The system supports multiple branch locations. Only Nsukka is currently active; other branches show a "Coming Soon" page.
+
+| Branch | Slug | Status |
+|--------|------|--------|
+| Nsukka Branch | `nsukka` | ✅ Active |
+| Lagos Branch | `lagos` | 🔜 Coming Soon |
+| Enugu Branch | `enugu` | 🔜 Coming Soon |
+| Owerri Branch | `owerri` | 🔜 Coming Soon |
+
 ## Pages
+
+All page URLs follow the pattern `/muchroom/{branch}/{page}/` where `{branch}` is one of the branch slugs above (e.g. `nsukka`).
+
 | URL | Description |
 |-----|-------------|
-| `/muchroom/` | Landing page |
-| `/muchroom/login/` | Staff login |
-| `/muchroom/home/` | Dashboard with category cards and KPIs |
-| `/muchroom/take-order/` | Create new orders |
-| `/muchroom/sales/` | Today's sales |
-| `/muchroom/inventory/` | Stock inventory with opening/closing values |
-| `/muchroom/import/` | Import stock |
-| `/muchroom/financial/` | Financial summary |
-| `/muchroom/analytics/` | Analytics with charts |
-| `/muchroom/admin/` | Admin panel (products, categories, users) |
-| `/muchroom/category/{slug}/` | Category product listing |
+| `/muchroom/` | Branch selection dashboard |
+| `/muchroom/{branch}/` | Branch landing page |
+| `/muchroom/{branch}/login/` | Staff login |
+| `/muchroom/{branch}/home/` | Dashboard with category cards and KPIs |
+| `/muchroom/{branch}/take-order/` | Create new orders |
+| `/muchroom/{branch}/sales/` | Today's sales |
+| `/muchroom/{branch}/sales/history/` | Sales history |
+| `/muchroom/{branch}/inventory/` | Stock inventory with opening/closing values |
+| `/muchroom/{branch}/inventory/history/` | Inventory history |
+| `/muchroom/{branch}/import/` | Import stock |
+| `/muchroom/{branch}/import/history/` | Import history |
+| `/muchroom/{branch}/financial/` | Financial summary |
+| `/muchroom/{branch}/financial/history/` | Financial history |
+| `/muchroom/{branch}/analytics/` | Analytics with charts |
+| `/muchroom/{branch}/admin/` | Admin panel (products, categories, users) |
+| `/muchroom/{branch}/category/{slug}/` | Category product listing |
 
-All pages have corresponding history pages at `{page}/history/`.
+### Example URLs (Nsukka branch)
+
+| URL | Description |
+|-----|-------------|
+| `/muchroom/nsukka/` | Nsukka landing page |
+| `/muchroom/nsukka/login/` | Nsukka staff login |
+| `/muchroom/nsukka/home/` | Nsukka dashboard |
+| `/muchroom/nsukka/take-order/` | Take an order at Nsukka |
+| `/muchroom/nsukka/sales/` | Nsukka today's sales |
+| `/muchroom/nsukka/inventory/` | Nsukka stock inventory |
+| `/muchroom/nsukka/analytics/` | Nsukka analytics |
+| `/muchroom/nsukka/admin/` | Nsukka admin panel |
 
 ## Currency
 Default currency is Nigerian Naira (₦) with comma-formatted prices (e.g., ₦1,000, ₦10,000, ₦100,000).
