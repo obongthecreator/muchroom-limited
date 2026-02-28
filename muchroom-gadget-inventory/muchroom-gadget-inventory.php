@@ -182,6 +182,7 @@ class Muchroom_Gadget_Inventory {
             'restUrl'  => rest_url( 'mgi/v1/' ),
             'nonce'    => wp_create_nonce( 'mgi_nonce' ),
             'currency' => '₦',
+            'branch'   => self::get_current_branch(),
         ) );
     }
 
@@ -200,7 +201,8 @@ class Muchroom_Gadget_Inventory {
         }
 
         // Pages that require a branch context.
-        if ( empty( $branch ) && ! in_array( $page, array( 'branches' ), true ) ) {
+        $valid_branches = array_keys( self::get_branches() );
+        if ( empty( $branch ) || ! in_array( $branch, $valid_branches, true ) ) {
             wp_redirect( home_url( '/muchroom/' ) );
             exit;
         }
@@ -208,12 +210,6 @@ class Muchroom_Gadget_Inventory {
         // Check if branch is active; show coming-soon for inactive branches.
         $branches = self::get_branches();
         if ( ! empty( $branch ) && isset( $branches[ $branch ] ) && ! $branches[ $branch ]['active'] ) {
-            if ( ! in_array( $page, array( 'landing' ), true ) ) {
-                // For inactive branches, only the coming-soon page is accessible.
-                $page = 'coming-soon';
-            } else {
-                $page = 'coming-soon';
-            }
             include MGI_PLUGIN_DIR . 'templates/coming-soon.php';
             exit;
         }
