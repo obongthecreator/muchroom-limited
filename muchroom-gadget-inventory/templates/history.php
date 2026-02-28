@@ -4,6 +4,7 @@
  * Used for sales-history, inventory-history, import-history, financial-history
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
+$branch = Muchroom_Gadget_Inventory::get_current_branch();
 
 $mgi_page    = get_query_var( 'mgi_page' );
 $history_type = str_replace( '-history', '', $mgi_page );
@@ -23,7 +24,7 @@ $today = current_time( 'Y-m-d' );
 
 <div class="page-header">
     <h1 class="heading"><?php echo esc_html( $page_title ); ?></h1>
-    <a href="<?php echo esc_url( home_url( '/muchroom/' . $history_type . '/' ) ); ?>" class="pill-btn pill-btn-outline btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
+    <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/' . $history_type . '/' ) ); ?>" class="pill-btn pill-btn-outline btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
         ← Back to <?php echo esc_html( ucfirst( $history_type ) ); ?>
     </a>
 </div>

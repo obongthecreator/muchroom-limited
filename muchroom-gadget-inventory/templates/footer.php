@@ -3,13 +3,16 @@
  * Footer partial
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
+$footer_branch = Muchroom_Gadget_Inventory::get_current_branch();
 ?>
 </div><!-- .mgi-content -->
 
 <footer class="mgi-footer">
     <div class="mgi-footer-inner">
         <div class="mgi-footer-info">
-            <strong>Muchroom Limited</strong> &mdash; Gadget Inventory Management System &copy; <?php echo esc_html( gmdate( 'Y' ) ); ?>
+            <strong>Muchroom Limited</strong> &mdash; <?php echo esc_html( Muchroom_Gadget_Inventory::get_branch_name() ); ?> &copy; <?php echo esc_html( gmdate( 'Y' ) ); ?>
+            &nbsp;|&nbsp;
+            <a href="<?php echo esc_url( home_url( '/muchroom/' ) ); ?>" style="color:var(--primary);text-decoration:none;font-size:13px;">🏢 Switch Branch</a>
         </div>
         <button class="pill-btn pill-btn-danger btn-text" onclick="doLogout()" style="padding:8px 20px;font-size:13px;">
             🚪 Logout
@@ -18,6 +21,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 </footer>
 
 </div><!-- .mgi-wrapper -->
+
+<script>
+// Store branch for logout redirect
+window.mgiBranch = '<?php echo esc_js( $footer_branch ); ?>';
+</script>
 
 <?php wp_footer(); ?>
 </body>

@@ -3,12 +3,13 @@
  * Category Page - Products in a specific category
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
+$branch = Muchroom_Gadget_Inventory::get_current_branch();
 
 $slug     = get_query_var( 'mgi_category' );
 $category = MGI_Products::get_category_by_slug( $slug );
 
 if ( ! $category ) {
-    wp_redirect( home_url( '/muchroom/home/' ) );
+    wp_redirect( home_url( '/muchroom/' . $branch . '/home/' ) );
     exit;
 }
 
@@ -24,7 +25,7 @@ $is_laptop = in_array( $slug, array( 'laptops' ), true );
         <h1 class="heading"><?php echo esc_html( $category->icon . ' ' . $category->name ); ?></h1>
         <p class="text-muted body-text" style="font-size:14px;"><?php echo count( $products ); ?> products</p>
     </div>
-    <a href="<?php echo esc_url( home_url( '/muchroom/home/' ) ); ?>" class="pill-btn pill-btn-outline btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
+    <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/home/' ) ); ?>" class="pill-btn pill-btn-outline btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
         ← Back to Home
     </a>
 </div>

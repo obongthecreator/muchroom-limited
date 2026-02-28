@@ -3,6 +3,7 @@
  * Homepage - Category cards, financial summary, quick links
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
+$branch = Muchroom_Gadget_Inventory::get_current_branch();
 
 $page_title = 'Home';
 include MGI_PLUGIN_DIR . 'templates/header.php';
@@ -34,32 +35,32 @@ foreach ( $categories as $cat ) {
 
 <!-- Quick Actions Row -->
 <div class="mgi-grid mgi-grid-4 stagger-in mb-24" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));">
-    <a href="<?php echo esc_url( home_url( '/muchroom/take-order/' ) ); ?>" class="glass-card category-card" onclick="event.preventDefault(); navigateTo(this.href);">
+    <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/take-order/' ) ); ?>" class="glass-card category-card" onclick="event.preventDefault(); navigateTo(this.href);">
         <span class="cat-icon">🧾</span>
         <span class="cat-name">Take Order</span>
     </a>
-    <a href="<?php echo esc_url( home_url( '/muchroom/sales/' ) ); ?>" class="glass-card category-card" onclick="event.preventDefault(); navigateTo(this.href);">
+    <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/sales/' ) ); ?>" class="glass-card category-card" onclick="event.preventDefault(); navigateTo(this.href);">
         <span class="cat-icon">💵</span>
         <span class="cat-name">Sales</span>
     </a>
-    <a href="<?php echo esc_url( home_url( '/muchroom/import/' ) ); ?>" class="glass-card category-card" onclick="event.preventDefault(); navigateTo(this.href);">
+    <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/import/' ) ); ?>" class="glass-card category-card" onclick="event.preventDefault(); navigateTo(this.href);">
         <span class="cat-icon">📥</span>
         <span class="cat-name">Import</span>
     </a>
-    <a href="<?php echo esc_url( home_url( '/muchroom/financial/' ) ); ?>" class="glass-card category-card" onclick="event.preventDefault(); navigateTo(this.href);">
+    <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/financial/' ) ); ?>" class="glass-card category-card" onclick="event.preventDefault(); navigateTo(this.href);">
         <span class="cat-icon">💰</span>
         <span class="cat-name">Financial Summary</span>
     </a>
-    <a href="<?php echo esc_url( home_url( '/muchroom/analytics/' ) ); ?>" class="glass-card category-card" onclick="event.preventDefault(); navigateTo(this.href);">
+    <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/analytics/' ) ); ?>" class="glass-card category-card" onclick="event.preventDefault(); navigateTo(this.href);">
         <span class="cat-icon">📊</span>
         <span class="cat-name">Analytics</span>
     </a>
-    <a href="<?php echo esc_url( home_url( '/muchroom/inventory/' ) ); ?>" class="glass-card category-card" onclick="event.preventDefault(); navigateTo(this.href);">
+    <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/inventory/' ) ); ?>" class="glass-card category-card" onclick="event.preventDefault(); navigateTo(this.href);">
         <span class="cat-icon">📦</span>
         <span class="cat-name">Inventory</span>
     </a>
     <?php if ( MGI_Auth::is_admin() ) : ?>
-    <a href="<?php echo esc_url( home_url( '/muchroom/admin/' ) ); ?>" class="glass-card category-card" onclick="event.preventDefault(); navigateTo(this.href);">
+    <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/admin/' ) ); ?>" class="glass-card category-card" onclick="event.preventDefault(); navigateTo(this.href);">
         <span class="cat-icon">⚙️</span>
         <span class="cat-name">Admin Panel</span>
     </a>
@@ -99,7 +100,7 @@ foreach ( $categories as $cat ) {
 <h2 class="subheading font-display fw-800 mb-16">Categories</h2>
 <div class="mgi-grid stagger-in mb-24" style="grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));">
     <?php foreach ( $categories as $cat ) : ?>
-    <a href="<?php echo esc_url( home_url( '/muchroom/category/' . $cat->slug . '/' ) ); ?>" class="glass-card category-card" style="text-decoration:none;" onclick="event.preventDefault(); navigateTo(this.href);">
+    <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/category/' . $cat->slug . '/' ) ); ?>" class="glass-card category-card" style="text-decoration:none;" onclick="event.preventDefault(); navigateTo(this.href);">
         <span class="cat-icon"><?php echo esc_html( $cat->icon ); ?></span>
         <span class="cat-name"><?php echo esc_html( $cat->name ); ?></span>
         <span class="cat-count"><?php echo esc_html( isset( $cat_counts[ $cat->id ] ) ? $cat_counts[ $cat->id ] : 0 ); ?> products</span>

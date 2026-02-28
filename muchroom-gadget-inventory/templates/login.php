@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Muchroom Limited</title>
+    <title>Login - <?php echo esc_html( Muchroom_Gadget_Inventory::get_branch_name() ); ?> - Muchroom Limited</title>
     <?php wp_head(); ?>
 </head>
 <body class="mgi-page">
+
+<?php $branch = Muchroom_Gadget_Inventory::get_current_branch(); ?>
 
 <div class="mgi-noodle-bg"></div>
 
@@ -17,10 +19,11 @@
                 <h1 class="heading font-display" style="font-size:28px;margin-bottom:8px;">
                     <span style="background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Muchroom Limited</span>
                 </h1>
-                <p class="text-muted body-text" style="font-size:14px;">Staff Login Portal</p>
+                <p class="text-muted body-text" style="font-size:14px;">Staff Login &mdash; <?php echo esc_html( Muchroom_Gadget_Inventory::get_branch_name() ); ?></p>
             </div>
 
             <form id="login-form" onsubmit="return handleLogin(event)">
+                <input type="hidden" id="login-branch" value="<?php echo esc_attr( $branch ); ?>" />
                 <div class="mgi-form-group">
                     <label for="login-username">Username</label>
                     <input type="text" id="login-username" class="mgi-input" placeholder="Enter your username" required autocomplete="username" />
@@ -38,9 +41,12 @@
                 </button>
             </form>
 
-            <div class="text-center mt-24">
+            <div class="text-center mt-24" style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+                <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/' ) ); ?>" class="text-muted" style="font-size:13px;text-decoration:none;">
+                    ← Back to <?php echo esc_html( Muchroom_Gadget_Inventory::get_branch_name() ); ?>
+                </a>
                 <a href="<?php echo esc_url( home_url( '/muchroom/' ) ); ?>" class="text-muted" style="font-size:13px;text-decoration:none;">
-                    ← Back to Landing Page
+                    🏢 Switch Branch
                 </a>
             </div>
         </div>
@@ -52,6 +58,7 @@ function handleLogin(e) {
     e.preventDefault();
     var username = document.getElementById('login-username').value;
     var password = document.getElementById('login-password').value;
+    var branch = document.getElementById('login-branch').value;
     var errorEl = document.getElementById('login-error');
     var btn = document.getElementById('login-btn');
 
@@ -59,7 +66,7 @@ function handleLogin(e) {
     btn.disabled = true;
     btn.textContent = 'Logging in...';
 
-    mgiAjax('login', { username: username, password: password }, function(err, res) {
+    mgiAjax('login', { username: username, password: password, branch: branch }, function(err, res) {
         btn.disabled = false;
         btn.textContent = '🔐 Login';
 

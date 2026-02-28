@@ -3,6 +3,7 @@
  * Financial Summary Page
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
+$branch = Muchroom_Gadget_Inventory::get_current_branch();
 
 $page_title = 'Financial Summary';
 include MGI_PLUGIN_DIR . 'templates/header.php';
@@ -13,7 +14,7 @@ $financial = MGI_Financial::get_summary( $today );
 
 <div class="page-header">
     <h1 class="heading">Financial Summary</h1>
-    <a href="<?php echo esc_url( home_url( '/muchroom/financial/history/' ) ); ?>" class="pill-btn pill-btn-outline btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
+    <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/financial/history/' ) ); ?>" class="pill-btn pill-btn-outline btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
         📋 Financial History
     </a>
 </div>

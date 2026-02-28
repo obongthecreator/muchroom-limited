@@ -59,21 +59,28 @@ class Muchroom_Gadget_Inventory {
     }
 
     public function init() {
-        add_rewrite_rule( '^muchroom/?$', 'index.php?mgi_page=landing', 'top' );
-        add_rewrite_rule( '^muchroom/login/?$', 'index.php?mgi_page=login', 'top' );
-        add_rewrite_rule( '^muchroom/home/?$', 'index.php?mgi_page=home', 'top' );
-        add_rewrite_rule( '^muchroom/take-order/?$', 'index.php?mgi_page=take-order', 'top' );
-        add_rewrite_rule( '^muchroom/sales/?$', 'index.php?mgi_page=sales', 'top' );
-        add_rewrite_rule( '^muchroom/sales/history/?$', 'index.php?mgi_page=sales-history', 'top' );
-        add_rewrite_rule( '^muchroom/inventory/?$', 'index.php?mgi_page=inventory', 'top' );
-        add_rewrite_rule( '^muchroom/inventory/history/?$', 'index.php?mgi_page=inventory-history', 'top' );
-        add_rewrite_rule( '^muchroom/import/?$', 'index.php?mgi_page=import', 'top' );
-        add_rewrite_rule( '^muchroom/import/history/?$', 'index.php?mgi_page=import-history', 'top' );
-        add_rewrite_rule( '^muchroom/financial/?$', 'index.php?mgi_page=financial', 'top' );
-        add_rewrite_rule( '^muchroom/financial/history/?$', 'index.php?mgi_page=financial-history', 'top' );
-        add_rewrite_rule( '^muchroom/analytics/?$', 'index.php?mgi_page=analytics', 'top' );
-        add_rewrite_rule( '^muchroom/admin/?$', 'index.php?mgi_page=admin', 'top' );
-        add_rewrite_rule( '^muchroom/category/([^/]+)/?$', 'index.php?mgi_page=category&mgi_category=$matches[1]', 'top' );
+        // Branch selection dashboard.
+        add_rewrite_rule( '^muchroom/?$', 'index.php?mgi_page=branches', 'top' );
+
+        // Branch-specific routes (e.g. /muchroom/nsukka/home/).
+        $branches = array( 'nsukka', 'lagos', 'enugu', 'owerri' );
+        foreach ( $branches as $branch ) {
+            add_rewrite_rule( '^muchroom/' . $branch . '/?$', 'index.php?mgi_page=landing&mgi_branch=' . $branch, 'top' );
+            add_rewrite_rule( '^muchroom/' . $branch . '/login/?$', 'index.php?mgi_page=login&mgi_branch=' . $branch, 'top' );
+            add_rewrite_rule( '^muchroom/' . $branch . '/home/?$', 'index.php?mgi_page=home&mgi_branch=' . $branch, 'top' );
+            add_rewrite_rule( '^muchroom/' . $branch . '/take-order/?$', 'index.php?mgi_page=take-order&mgi_branch=' . $branch, 'top' );
+            add_rewrite_rule( '^muchroom/' . $branch . '/sales/?$', 'index.php?mgi_page=sales&mgi_branch=' . $branch, 'top' );
+            add_rewrite_rule( '^muchroom/' . $branch . '/sales/history/?$', 'index.php?mgi_page=sales-history&mgi_branch=' . $branch, 'top' );
+            add_rewrite_rule( '^muchroom/' . $branch . '/inventory/?$', 'index.php?mgi_page=inventory&mgi_branch=' . $branch, 'top' );
+            add_rewrite_rule( '^muchroom/' . $branch . '/inventory/history/?$', 'index.php?mgi_page=inventory-history&mgi_branch=' . $branch, 'top' );
+            add_rewrite_rule( '^muchroom/' . $branch . '/import/?$', 'index.php?mgi_page=import&mgi_branch=' . $branch, 'top' );
+            add_rewrite_rule( '^muchroom/' . $branch . '/import/history/?$', 'index.php?mgi_page=import-history&mgi_branch=' . $branch, 'top' );
+            add_rewrite_rule( '^muchroom/' . $branch . '/financial/?$', 'index.php?mgi_page=financial&mgi_branch=' . $branch, 'top' );
+            add_rewrite_rule( '^muchroom/' . $branch . '/financial/history/?$', 'index.php?mgi_page=financial-history&mgi_branch=' . $branch, 'top' );
+            add_rewrite_rule( '^muchroom/' . $branch . '/analytics/?$', 'index.php?mgi_page=analytics&mgi_branch=' . $branch, 'top' );
+            add_rewrite_rule( '^muchroom/' . $branch . '/admin/?$', 'index.php?mgi_page=admin&mgi_branch=' . $branch, 'top' );
+            add_rewrite_rule( '^muchroom/' . $branch . '/category/([^/]+)/?$', 'index.php?mgi_page=category&mgi_branch=' . $branch . '&mgi_category=$matches[1]', 'top' );
+        }
 
         if ( get_option( 'mgi_flush_rewrite', false ) ) {
             flush_rewrite_rules();
@@ -83,8 +90,60 @@ class Muchroom_Gadget_Inventory {
 
     public function add_query_vars( $vars ) {
         $vars[] = 'mgi_page';
+        $vars[] = 'mgi_branch';
         $vars[] = 'mgi_category';
         return $vars;
+    }
+
+    /**
+     * Get the list of branches with their details.
+     */
+    public static function get_branches() {
+        return array(
+            'nsukka' => array(
+                'name'   => 'Nsukka Branch',
+                'city'   => 'Nsukka',
+                'icon'   => '🏪',
+                'active' => true,
+            ),
+            'lagos' => array(
+                'name'   => 'Lagos Branch',
+                'city'   => 'Lagos',
+                'icon'   => '🏬',
+                'active' => false,
+            ),
+            'enugu' => array(
+                'name'   => 'Enugu Branch',
+                'city'   => 'Enugu',
+                'icon'   => '🏢',
+                'active' => false,
+            ),
+            'owerri' => array(
+                'name'   => 'Owerri Branch',
+                'city'   => 'Owerri',
+                'icon'   => '🏣',
+                'active' => false,
+            ),
+        );
+    }
+
+    /**
+     * Get the current branch slug from the URL.
+     */
+    public static function get_current_branch() {
+        $branch = get_query_var( 'mgi_branch' );
+        return ! empty( $branch ) ? sanitize_text_field( $branch ) : '';
+    }
+
+    /**
+     * Get branch display name.
+     */
+    public static function get_branch_name( $slug = '' ) {
+        if ( empty( $slug ) ) {
+            $slug = self::get_current_branch();
+        }
+        $branches = self::get_branches();
+        return isset( $branches[ $slug ] ) ? $branches[ $slug ]['name'] : '';
     }
 
     public function enqueue_assets() {
@@ -97,7 +156,7 @@ class Muchroom_Gadget_Inventory {
         wp_enqueue_style( 'mgi-responsive', MGI_PLUGIN_URL . 'assets/css/responsive.css', array(), MGI_VERSION );
         wp_enqueue_style( 'mgi-main', MGI_PLUGIN_URL . 'assets/css/main.css', array(), MGI_VERSION );
 
-        if ( 'landing' === $page ) {
+        if ( 'landing' === $page || 'branches' === $page ) {
             wp_enqueue_style( 'mgi-landing', MGI_PLUGIN_URL . 'assets/css/landing.css', array( 'mgi-main' ), MGI_VERSION );
             wp_enqueue_script( 'mgi-landing', MGI_PLUGIN_URL . 'assets/js/landing.js', array(), MGI_VERSION, true );
         }
@@ -132,10 +191,37 @@ class Muchroom_Gadget_Inventory {
             return;
         }
 
-        // Check auth for protected pages.
+        $branch = self::get_current_branch();
+
+        // Branch selector is always public.
+        if ( 'branches' === $page ) {
+            include MGI_PLUGIN_DIR . 'templates/branches.php';
+            exit;
+        }
+
+        // Pages that require a branch context.
+        if ( empty( $branch ) && ! in_array( $page, array( 'branches' ), true ) ) {
+            wp_redirect( home_url( '/muchroom/' ) );
+            exit;
+        }
+
+        // Check if branch is active; show coming-soon for inactive branches.
+        $branches = self::get_branches();
+        if ( ! empty( $branch ) && isset( $branches[ $branch ] ) && ! $branches[ $branch ]['active'] ) {
+            if ( ! in_array( $page, array( 'landing' ), true ) ) {
+                // For inactive branches, only the coming-soon page is accessible.
+                $page = 'coming-soon';
+            } else {
+                $page = 'coming-soon';
+            }
+            include MGI_PLUGIN_DIR . 'templates/coming-soon.php';
+            exit;
+        }
+
+        // Public pages within a branch (landing & login don't require auth).
         $public_pages = array( 'landing', 'login' );
         if ( ! in_array( $page, $public_pages, true ) && ! MGI_Auth::is_logged_in() ) {
-            wp_redirect( home_url( '/muchroom/login/' ) );
+            wp_redirect( home_url( '/muchroom/' . $branch . '/login/' ) );
             exit;
         }
 

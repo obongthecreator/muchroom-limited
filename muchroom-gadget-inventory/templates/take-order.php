@@ -3,6 +3,7 @@
  * Take Order Form
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
+$branch = Muchroom_Gadget_Inventory::get_current_branch();
 
 $page_title = 'Take Order';
 include MGI_PLUGIN_DIR . 'templates/header.php';
@@ -12,7 +13,7 @@ $categories = MGI_Products::get_categories();
 
 <div class="page-header">
     <h1 class="heading">Take Order</h1>
-    <a href="<?php echo esc_url( home_url( '/muchroom/sales/history/' ) ); ?>" class="pill-btn pill-btn-outline btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
+    <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/sales/history/' ) ); ?>" class="pill-btn pill-btn-outline btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
         📋 Order History
     </a>
 </div>

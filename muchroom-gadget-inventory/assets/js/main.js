@@ -216,7 +216,8 @@ function mgiAjax(actionType, data, callback) {
 
 /* ---- Logout ---- */
 function doLogout() {
-    mgiAjax('logout', {}, function(err, res) {
+    var branch = window.mgiBranch || 'nsukka';
+    mgiAjax('logout', { branch: branch }, function(err, res) {
         if (!err && res.success) {
             window.location.href = res.data.redirect;
         }

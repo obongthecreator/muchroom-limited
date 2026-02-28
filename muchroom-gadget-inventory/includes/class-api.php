@@ -54,16 +54,18 @@ class MGI_API {
             case 'login':
                 $username = isset( $_POST['username'] ) ? sanitize_text_field( wp_unslash( $_POST['username'] ) ) : '';
                 $password = isset( $_POST['password'] ) ? $_POST['password'] : '';
+                $branch   = isset( $_POST['branch'] ) ? sanitize_text_field( wp_unslash( $_POST['branch'] ) ) : 'nsukka';
                 $result   = MGI_Auth::login( $username, $password );
                 if ( is_wp_error( $result ) ) {
                     wp_send_json_error( array( 'message' => $result->get_error_message() ) );
                 }
-                wp_send_json_success( array( 'message' => 'Login successful', 'redirect' => home_url( '/muchroom/home/' ) ) );
+                wp_send_json_success( array( 'message' => 'Login successful', 'redirect' => home_url( '/muchroom/' . $branch . '/home/' ) ) );
                 break;
 
             case 'logout':
+                $branch = isset( $_POST['branch'] ) ? sanitize_text_field( wp_unslash( $_POST['branch'] ) ) : 'nsukka';
                 MGI_Auth::logout();
-                wp_send_json_success( array( 'redirect' => home_url( '/muchroom/login/' ) ) );
+                wp_send_json_success( array( 'redirect' => home_url( '/muchroom/' . $branch . '/login/' ) ) );
                 break;
 
             case 'create_order':

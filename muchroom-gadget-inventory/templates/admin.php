@@ -3,9 +3,10 @@
  * Admin Panel - Manage products, categories, users
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
+$branch = Muchroom_Gadget_Inventory::get_current_branch();
 
 if ( ! MGI_Auth::is_admin() ) {
-    wp_redirect( home_url( '/muchroom/home/' ) );
+    wp_redirect( home_url( '/muchroom/' . $branch . '/home/' ) );
     exit;
 }
 

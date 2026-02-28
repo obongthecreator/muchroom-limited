@@ -3,6 +3,7 @@
  * Stock Inventory Page
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
+$branch = Muchroom_Gadget_Inventory::get_current_branch();
 
 $page_title = 'Inventory';
 include MGI_PLUGIN_DIR . 'templates/header.php';
@@ -21,10 +22,10 @@ $inventory = MGI_Inventory::get_inventory( $today );
 <div class="page-header">
     <h1 class="heading">Stock Inventory</h1>
     <div class="flex gap-8">
-        <a href="<?php echo esc_url( home_url( '/muchroom/inventory/history/' ) ); ?>" class="pill-btn pill-btn-outline btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
+        <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/inventory/history/' ) ); ?>" class="pill-btn pill-btn-outline btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
             📋 History
         </a>
-        <a href="<?php echo esc_url( home_url( '/muchroom/import/' ) ); ?>" class="pill-btn beam-btn btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
+        <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/import/' ) ); ?>" class="pill-btn beam-btn btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
             📥 Import Stock
         </a>
     </div>

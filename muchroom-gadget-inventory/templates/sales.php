@@ -3,6 +3,7 @@
  * Sales Page - Today's sales
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
+$branch = Muchroom_Gadget_Inventory::get_current_branch();
 
 $page_title = 'Sales';
 include MGI_PLUGIN_DIR . 'templates/header.php';
@@ -18,10 +19,10 @@ foreach ( $orders as $o ) {
 <div class="page-header">
     <h1 class="heading">Today's Sales</h1>
     <div class="flex gap-8">
-        <a href="<?php echo esc_url( home_url( '/muchroom/sales/history/' ) ); ?>" class="pill-btn pill-btn-outline btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
+        <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/sales/history/' ) ); ?>" class="pill-btn pill-btn-outline btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
             📋 Sales History
         </a>
-        <a href="<?php echo esc_url( home_url( '/muchroom/take-order/' ) ); ?>" class="pill-btn beam-btn btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
+        <a href="<?php echo esc_url( home_url( '/muchroom/' . $branch . '/take-order/' ) ); ?>" class="pill-btn beam-btn btn-text" onclick="event.preventDefault(); navigateTo(this.href);">
             ➕ New Order
         </a>
     </div>
