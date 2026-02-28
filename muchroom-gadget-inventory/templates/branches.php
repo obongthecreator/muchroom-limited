@@ -6,6 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 $branches = Muchroom_Gadget_Inventory::get_branches();
 ?>
+<?php if ( empty( $GLOBALS['mgi_shortcode_mode'] ) ) : ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +16,7 @@ $branches = Muchroom_Gadget_Inventory::get_branches();
     <?php wp_head(); ?>
 </head>
 <body class="mgi-page">
+<?php endif; ?>
 
 <div class="mgi-noodle-bg"></div>
 <div class="landing-bg-shapes">
@@ -81,6 +83,8 @@ $branches = Muchroom_Gadget_Inventory::get_branches();
     </div>
 </div>
 
+<?php if ( empty( $GLOBALS['mgi_shortcode_mode'] ) ) : ?>
 <?php wp_footer(); ?>
 </body>
 </html>
+<?php endif; ?>

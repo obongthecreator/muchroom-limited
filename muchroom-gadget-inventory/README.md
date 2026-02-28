@@ -38,7 +38,9 @@ A comprehensive WordPress plugin for managing gadget inventory, sales, orders, a
 3. Visit **Settings → Permalinks** and click "Save Changes" to flush rewrite rules
 4. Access the system at `yoursite.com/muchroom/`
 
-> **No shortcodes or WordPress pages required.** This plugin registers its own custom URL routes automatically. Once installed and activated, all pages below are available immediately — you do **not** need to create any WordPress pages or use shortcodes.
+> **No shortcodes or WordPress pages required for basic usage.** This plugin registers its own custom URL routes automatically. Once installed and activated, all pages below are available immediately at `yoursite.com/muchroom/`.
+>
+> **Shortcodes are also available** if you prefer to embed any page into an existing WordPress page or post. See the [Shortcodes](#shortcodes) section below.
 
 ## Default Login
 - **Username:** `admin`
@@ -90,6 +92,56 @@ All page URLs follow the pattern `/muchroom/{branch}/{page}/` where `{branch}` i
 | `/muchroom/nsukka/inventory/` | Nsukka stock inventory |
 | `/muchroom/nsukka/analytics/` | Nsukka analytics |
 | `/muchroom/nsukka/admin/` | Nsukka admin panel |
+
+## Shortcodes
+
+You can embed any page into a WordPress page or post using shortcodes. Create a new WordPress page, add the shortcode to its content, and publish.
+
+### Available Shortcodes
+
+| Shortcode | Description | Example |
+|-----------|-------------|---------|
+| `[mgi_branches]` | Branch selection dashboard | `[mgi_branches]` |
+| `[mgi_landing]` | Branch landing page | `[mgi_landing branch="nsukka"]` |
+| `[mgi_login]` | Staff login form | `[mgi_login branch="nsukka"]` |
+| `[mgi_home]` | Dashboard with category cards and KPIs | `[mgi_home branch="nsukka"]` |
+| `[mgi_take_order]` | Create new orders | `[mgi_take_order branch="nsukka"]` |
+| `[mgi_sales]` | Today's sales | `[mgi_sales branch="nsukka"]` |
+| `[mgi_sales_history]` | Sales history | `[mgi_sales_history branch="nsukka"]` |
+| `[mgi_inventory]` | Stock inventory | `[mgi_inventory branch="nsukka"]` |
+| `[mgi_inventory_history]` | Inventory history | `[mgi_inventory_history branch="nsukka"]` |
+| `[mgi_import]` | Import stock | `[mgi_import branch="nsukka"]` |
+| `[mgi_import_history]` | Import history | `[mgi_import_history branch="nsukka"]` |
+| `[mgi_financial]` | Financial summary | `[mgi_financial branch="nsukka"]` |
+| `[mgi_financial_history]` | Financial history | `[mgi_financial_history branch="nsukka"]` |
+| `[mgi_analytics]` | Analytics with charts | `[mgi_analytics branch="nsukka"]` |
+| `[mgi_admin]` | Admin panel (products, categories, users) | `[mgi_admin branch="nsukka"]` |
+| `[mgi_category]` | Category product listing | `[mgi_category branch="nsukka" category="laptops"]` |
+
+### Shortcode Attributes
+
+| Attribute | Required | Description |
+|-----------|----------|-------------|
+| `branch` | Yes (except `[mgi_branches]`) | Branch slug: `nsukka`, `lagos`, `enugu`, or `owerri` |
+| `category` | Only for `[mgi_category]` | Category slug (e.g. `laptops`, `phones`) |
+
+### Quick Setup — One Page Per Section
+
+1. Create a WordPress page called **"Branches"** → add `[mgi_branches]`
+2. Create a page **"Dashboard"** → add `[mgi_home branch="nsukka"]`
+3. Create a page **"Take Order"** → add `[mgi_take_order branch="nsukka"]`
+4. Create a page **"Sales"** → add `[mgi_sales branch="nsukka"]`
+5. Create a page **"Sales History"** → add `[mgi_sales_history branch="nsukka"]`
+6. Create a page **"Inventory"** → add `[mgi_inventory branch="nsukka"]`
+7. Create a page **"Inventory History"** → add `[mgi_inventory_history branch="nsukka"]`
+8. Create a page **"Import Stock"** → add `[mgi_import branch="nsukka"]`
+9. Create a page **"Import History"** → add `[mgi_import_history branch="nsukka"]`
+10. Create a page **"Financial Summary"** → add `[mgi_financial branch="nsukka"]`
+11. Create a page **"Financial History"** → add `[mgi_financial_history branch="nsukka"]`
+12. Create a page **"Analytics"** → add `[mgi_analytics branch="nsukka"]`
+13. Create a page **"Admin Panel"** → add `[mgi_admin branch="nsukka"]`
+
+> **Note:** History pages are available for all sections that store submissions: Sales, Inventory, Import, and Financial.
 
 ## Currency
 Default currency is Nigerian Naira (₦) with comma-formatted prices (e.g., ₦1,000, ₦10,000, ₦100,000).

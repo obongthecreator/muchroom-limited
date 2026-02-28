@@ -1,3 +1,4 @@
+<?php if ( empty( $GLOBALS['mgi_shortcode_mode'] ) ) : ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,7 @@
     <?php wp_head(); ?>
 </head>
 <body class="mgi-page">
+<?php endif; ?>
 
 <?php $branch = Muchroom_Gadget_Inventory::get_current_branch(); ?>
 
@@ -83,6 +85,8 @@ function handleLogin(e) {
 }
 </script>
 
+<?php if ( empty( $GLOBALS['mgi_shortcode_mode'] ) ) : ?>
 <?php wp_footer(); ?>
 </body>
 </html>
+<?php endif; ?>

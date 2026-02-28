@@ -29,6 +29,7 @@ require_once MGI_PLUGIN_DIR . 'includes/class-analytics.php';
 require_once MGI_PLUGIN_DIR . 'includes/class-admin-panel.php';
 require_once MGI_PLUGIN_DIR . 'includes/class-users.php';
 require_once MGI_PLUGIN_DIR . 'includes/class-api.php';
+require_once MGI_PLUGIN_DIR . 'includes/class-shortcodes.php';
 
 /**
  * Main plugin class.
@@ -56,6 +57,8 @@ class Muchroom_Gadget_Inventory {
 
         add_action( 'wp_ajax_mgi_action', array( 'MGI_API', 'handle_ajax' ) );
         add_action( 'wp_ajax_nopriv_mgi_action', array( 'MGI_API', 'handle_ajax' ) );
+
+        add_action( 'init', array( 'MGI_Shortcodes', 'init' ) );
     }
 
     public function init() {
