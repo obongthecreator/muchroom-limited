@@ -50,7 +50,7 @@ $financial = MGI_Financial::get_summary( $today );
         </div>
 
         <div class="glass-card kpi-card pulse-glow" style="border:2px solid var(--primary);">
-            <div class="kpi-icon"><iconify-icon icon="solar:bank-linear"></iconify-icon></div>
+            <div class="kpi-icon"><iconify-icon icon="solar:safe-square-linear"></iconify-icon></div>
             <div class="kpi-value text-primary"><?php echo esc_html( '₦' . number_format( $financial->cash_left, 0 ) ); ?></div>
             <div class="kpi-label">Cash Left (Old Cash + Today's Cash)</div>
         </div>

@@ -90,7 +90,7 @@ foreach ( $categories as $cat ) {
         <div class="kpi-label">Cash</div>
     </div>
     <div class="glass-card kpi-card">
-        <div class="kpi-icon"><iconify-icon icon="solar:bank-linear"></iconify-icon></div>
+        <div class="kpi-icon"><iconify-icon icon="solar:safe-square-linear"></iconify-icon></div>
         <div class="kpi-value"><?php echo esc_html( '₦' . number_format( $financial->cash_left, 0 ) ); ?></div>
         <div class="kpi-label">Cash Left</div>
     </div>
