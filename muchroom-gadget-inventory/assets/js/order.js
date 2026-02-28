@@ -242,13 +242,13 @@ function submitOrder() {
 
     // Show confirmation dialog
     showOrderConfirmation({
-        customerName: customerName,
-        paymentMethod: paymentMethod,
-        cashAmount: cashAmount,
-        transferAmount: transferAmount,
-        grandTotal: grandTotal,
+        customer_name: customerName,
+        payment_method: paymentMethod,
+        cash_amount: cashAmount,
+        transfer_amount: transferAmount,
+        grand_total: grandTotal,
         items: items,
-        formHash: document.getElementById('form-hash').value
+        form_hash: document.getElementById('form-hash').value
     });
 }
 
@@ -257,13 +257,13 @@ function showOrderConfirmation(orderData) {
     if (!modal) return;
 
     var summaryHtml = '<div style="margin-bottom:16px">';
-    summaryHtml += '<p><strong>Customer:</strong> ' + escapeHtml(orderData.customerName) + '</p>';
-    summaryHtml += '<p><strong>Payment:</strong> ' + escapeHtml(orderData.paymentMethod) + '</p>';
-    if (orderData.paymentMethod === 'both') {
-        summaryHtml += '<p><strong>Cash:</strong> ' + formatNaira(orderData.cashAmount) + '</p>';
-        summaryHtml += '<p><strong>Transfer:</strong> ' + formatNaira(orderData.transferAmount) + '</p>';
+    summaryHtml += '<p><strong>Customer:</strong> ' + escapeHtml(orderData.customer_name) + '</p>';
+    summaryHtml += '<p><strong>Payment:</strong> ' + escapeHtml(orderData.payment_method) + '</p>';
+    if (orderData.payment_method === 'both') {
+        summaryHtml += '<p><strong>Cash:</strong> ' + formatNaira(orderData.cash_amount) + '</p>';
+        summaryHtml += '<p><strong>Transfer:</strong> ' + formatNaira(orderData.transfer_amount) + '</p>';
     }
-    summaryHtml += '<p><strong>Grand Total:</strong> ' + formatNaira(orderData.grandTotal) + '</p>';
+    summaryHtml += '<p><strong>Grand Total:</strong> ' + formatNaira(orderData.grand_total) + '</p>';
     summaryHtml += '<p><strong>Items:</strong> ' + orderData.items.length + ' product(s)</p>';
     summaryHtml += '</div>';
 

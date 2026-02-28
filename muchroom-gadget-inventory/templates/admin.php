@@ -325,7 +325,7 @@ function saveProduct(e) {
     }, function(err, res) {
         if (!err && res.success) {
             showToast('Product saved!', 'success');
-            setTimeout(function() { location.reload(); }, 500);
+            location.reload();
         } else {
             showToast(res && res.data ? res.data.message : 'Failed', 'error');
         }
@@ -338,7 +338,7 @@ function deleteProduct(id) {
     mgiAjax('delete_product', { product_id: id }, function(err, res) {
         if (!err && res.success) {
             showToast('Product deleted', 'success');
-            setTimeout(function() { location.reload(); }, 500);
+            location.reload();
         }
     });
 }
@@ -368,7 +368,7 @@ function saveCategory(e) {
     }, function(err, res) {
         if (!err && res.success) {
             showToast('Category saved!', 'success');
-            setTimeout(function() { location.reload(); }, 500);
+            location.reload();
         } else {
             showToast(res && res.data ? res.data.message : 'Failed', 'error');
         }
@@ -381,7 +381,7 @@ function deleteCategory(id) {
     mgiAjax('delete_category', { category_id: id }, function(err, res) {
         if (!err && res.success) {
             showToast('Category deleted', 'success');
-            setTimeout(function() { location.reload(); }, 500);
+            location.reload();
         }
     });
 }
@@ -426,7 +426,7 @@ function saveUser(e) {
     }, function(err, res) {
         if (!err && res.success) {
             showToast('User saved!', 'success');
-            setTimeout(function() { location.reload(); }, 500);
+            location.reload();
         } else {
             showToast(res && res.data ? res.data.message : 'Failed', 'error');
         }
@@ -439,7 +439,7 @@ function deleteUser(id) {
     mgiAjax('delete_user', { user_id: id }, function(err, res) {
         if (!err && res.success) {
             showToast('User deleted', 'success');
-            setTimeout(function() { location.reload(); }, 500);
+            location.reload();
         }
     });
 }
