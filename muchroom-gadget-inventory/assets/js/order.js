@@ -67,7 +67,7 @@ function loadOrderProducts(categoryId) {
             html += '<td>' + escapeHtml(displayName) + '</td>';
             html += '<td class="amount">' + formatNaira(p.cost) + '</td>';
             html += '<td class="amount">' + formatNaira(p.price) + '</td>';
-            html += '<td><input type="number" class="mgi-input qty-input" min="0" max="' + p.stock + '" value="0" data-price="' + p.price + '" data-product-id="' + p.id + '" style="width:80px" /></td>';
+            html += '<td><input type="number" class="mgi-input qty-input" min="0" value="0" data-price="' + p.price + '" data-product-id="' + p.id + '" style="width:80px" /></td>';
             html += '<td class="amount row-total">₦0</td>';
             html += '</tr>';
         });
