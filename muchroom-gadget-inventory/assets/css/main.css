@@ -1068,7 +1068,35 @@ iconify-icon {
 .feature-icon iconify-icon,
 .branch-icon iconify-icon {
     font-size: inherit;
+    color: inherit;
 }
 .kpi-icon iconify-icon {
     font-size: inherit;
+    color: inherit;
+}
+/* Ensure icons in gradient containers render white */
+.cat-icon,
+.kpi-icon {
+    color: #fff !important;
+}
+.cat-icon iconify-icon,
+.kpi-icon iconify-icon {
+    color: #fff !important;
+    --icon-color: #fff;
+}
+
+/* Password visibility toggle */
+.mgi-pw-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 18px;
+    padding: 4px;
+    display: inline-flex;
+    align-items: center;
 }

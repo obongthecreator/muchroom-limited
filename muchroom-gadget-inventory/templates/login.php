@@ -33,7 +33,12 @@
 
                 <div class="mgi-form-group">
                     <label for="login-password">Password</label>
-                    <input type="password" id="login-password" class="mgi-input" placeholder="Enter your password" required autocomplete="current-password" />
+                    <div style="position:relative;">
+                        <input type="password" id="login-password" class="mgi-input" placeholder="Enter your password" required autocomplete="current-password" style="padding-right:44px;" />
+                        <button type="button" class="mgi-pw-toggle" onclick="togglePasswordVisibility('login-password', this)" aria-label="Toggle password visibility">
+                            <iconify-icon icon="solar:eye-closed-linear"></iconify-icon>
+                        </button>
+                    </div>
                 </div>
 
                 <div id="login-error" class="text-danger" style="font-size:13px;margin-bottom:12px;display:none;"></div>
@@ -56,6 +61,15 @@
 </div>
 
 <script>
+function togglePasswordVisibility(inputId, btn) {
+    var input = document.getElementById(inputId);
+    if (!input) return;
+    var isPassword = input.type === 'password';
+    input.type = isPassword ? 'text' : 'password';
+    var icon = btn.querySelector('iconify-icon');
+    if (icon) icon.setAttribute('icon', isPassword ? 'solar:eye-linear' : 'solar:eye-closed-linear');
+}
+
 function handleLogin(e) {
     e.preventDefault();
     var username = document.getElementById('login-username').value;

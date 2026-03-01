@@ -30,11 +30,13 @@ function loadAnalytics() {
     var periodVal = period ? period.value : 'daily';
     var dateVal = date ? date.value : '';
 
-    showLoading('#analytics-charts');
+    // Show loading state on the top-products list only; chart canvases must stay in DOM.
+    var topList = document.getElementById('top-products-list');
+    if (topList) showLoading('#top-products-list');
 
     mgiAjax('get_analytics', { period: periodVal, date: dateVal }, function(err, res) {
         if (err || !res.success) {
-            document.getElementById('analytics-charts').innerHTML = '<p class="text-center text-muted">Failed to load analytics</p>';
+            if (topList) topList.innerHTML = '<p class="text-center text-muted">Failed to load analytics</p>';
             return;
         }
 

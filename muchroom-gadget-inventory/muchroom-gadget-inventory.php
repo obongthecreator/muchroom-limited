@@ -263,6 +263,8 @@ class Muchroom_Gadget_Inventory {
         if ( isset( $template_map[ $page ] ) ) {
             $template = MGI_PLUGIN_DIR . 'templates/' . $template_map[ $page ];
             if ( file_exists( $template ) ) {
+                // Prevent browser/proxy caching so data changes appear immediately.
+                nocache_headers();
                 include $template;
                 exit;
             }

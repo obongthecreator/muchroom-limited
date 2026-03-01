@@ -203,11 +203,11 @@ $stats      = MGI_Admin_Panel::get_dashboard_stats();
             <div class="mgi-grid" style="grid-template-columns:1fr 1fr;gap:12px;">
                 <div class="mgi-form-group">
                     <label>Cost (₦)</label>
-                    <input type="number" id="edit-product-cost" class="mgi-input" step="0.01" min="0" required />
+                    <input type="text" id="edit-product-cost" class="mgi-input mgi-price-input" inputmode="numeric" min="0" required />
                 </div>
                 <div class="mgi-form-group">
                     <label>Price (₦)</label>
-                    <input type="number" id="edit-product-price" class="mgi-input" step="0.01" min="0" required />
+                    <input type="text" id="edit-product-price" class="mgi-input mgi-price-input" inputmode="numeric" min="0" required />
                 </div>
             </div>
             <button type="submit" class="pill-btn beam-btn btn-text w-full mt-16"><iconify-icon icon="solar:diskette-linear"></iconify-icon> Save Product</button>
@@ -256,7 +256,12 @@ $stats      = MGI_Admin_Panel::get_dashboard_stats();
             </div>
             <div class="mgi-form-group">
                 <label>Password <span class="text-muted">(leave empty to keep current)</span></label>
-                <input type="password" id="edit-user-password" class="mgi-input" autocomplete="new-password" />
+                <div style="position:relative;">
+                    <input type="password" id="edit-user-password" class="mgi-input" autocomplete="new-password" style="padding-right:44px;" />
+                    <button type="button" class="mgi-pw-toggle" onclick="togglePasswordVisibility('edit-user-password', this)" aria-label="Toggle password visibility">
+                        <iconify-icon icon="solar:eye-closed-linear"></iconify-icon>
+                    </button>
+                </div>
             </div>
             <div class="mgi-form-group">
                 <label>Role</label>
@@ -286,6 +291,16 @@ $stats      = MGI_Admin_Panel::get_dashboard_stats();
 </div>
 
 <script>
+// Password visibility toggle
+function togglePasswordVisibility(inputId, btn) {
+    var input = document.getElementById(inputId);
+    if (!input) return;
+    var isPassword = input.type === 'password';
+    input.type = isPassword ? 'text' : 'password';
+    var icon = btn.querySelector('iconify-icon');
+    if (icon) icon.setAttribute('icon', isPassword ? 'solar:eye-linear' : 'solar:eye-closed-linear');
+}
+
 // Product CRUD
 function resetProductForm() {
     document.getElementById('product-modal-title').textContent = 'Add Product';
@@ -306,8 +321,8 @@ function editProduct(id, code, name, model, desc, catId, cost, price) {
     document.getElementById('edit-product-model').value = model;
     document.getElementById('edit-product-desc').value = desc;
     document.getElementById('edit-product-category').value = catId;
-    document.getElementById('edit-product-cost').value = cost;
-    document.getElementById('edit-product-price').value = price;
+    document.getElementById('edit-product-cost').value = Number(cost).toLocaleString('en-US');
+    document.getElementById('edit-product-price').value = Number(price).toLocaleString('en-US');
     openModal('product-modal');
 }
 
@@ -320,8 +335,8 @@ function saveProduct(e) {
         model:        document.getElementById('edit-product-model').value,
         description:  document.getElementById('edit-product-desc').value,
         category_id:  document.getElementById('edit-product-category').value,
-        cost:         document.getElementById('edit-product-cost').value,
-        price:        document.getElementById('edit-product-price').value
+        cost:         document.getElementById('edit-product-cost').value.replace(/,/g, ''),
+        price:        document.getElementById('edit-product-price').value.replace(/,/g, '')
     }, function(err, res) {
         if (!err && res.success) {
             showToast('Product saved!', 'success');
@@ -443,6 +458,27 @@ function deleteUser(id) {
         }
     });
 }
+
+// Live price formatting with commas
+(function() {
+    function formatWithCommas(value) {
+        var parts = value.replace(/,/g, '').split('.');
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        return parts.join('.');
+    }
+    function attachPriceFormat(input) {
+        input.addEventListener('input', function() {
+            var raw = this.value.replace(/[^0-9.]/g, '');
+            // Prevent multiple decimals
+            var dotIndex = raw.indexOf('.');
+            if (dotIndex !== -1) {
+                raw = raw.slice(0, dotIndex + 1) + raw.slice(dotIndex + 1).replace(/\./g, '');
+            }
+            this.value = formatWithCommas(raw);
+        });
+    }
+    document.querySelectorAll('.mgi-price-input').forEach(attachPriceFormat);
+})();
 </script>
 
 <?php include MGI_PLUGIN_DIR . 'templates/footer.php'; ?>
