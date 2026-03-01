@@ -73,6 +73,16 @@ class Muchroom_Gadget_Inventory {
         $is_mgi_page = isset( $_SERVER['REQUEST_URI'] ) && false !== strpos( $_SERVER['REQUEST_URI'], '/muchroom/' );
         $is_mgi_ajax = defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_POST['action'] ) && 'mgi_action' === $_POST['action'];
         if ( $is_mgi_page || $is_mgi_ajax ) {
+            // Ensure session cookie is valid for the entire site so that a
+            // session started via /wp-admin/admin-ajax.php (login AJAX) is
+            // also sent when the browser navigates to /muchroom/ pages.
+            session_set_cookie_params( array(
+                'lifetime' => 0,
+                'path'     => '/',
+                'secure'   => is_ssl(),
+                'httponly'  => true,
+                'samesite'  => 'Lax',
+            ) );
             session_start();
         }
     }

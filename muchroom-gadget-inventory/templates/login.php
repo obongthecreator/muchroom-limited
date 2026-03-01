@@ -24,7 +24,7 @@
                 <p class="text-muted body-text" style="font-size:14px;">Staff Login &mdash; <?php echo esc_html( Muchroom_Gadget_Inventory::get_branch_name() ); ?></p>
             </div>
 
-            <form id="login-form" onsubmit="return handleLogin(event)">
+            <form id="login-form" method="POST">
                 <input type="hidden" id="login-branch" value="<?php echo esc_attr( $branch ); ?>" />
                 <div class="mgi-form-group">
                     <label for="login-username">Username</label>
@@ -72,11 +72,21 @@ function togglePasswordVisibility(inputId, btn) {
 
 function handleLogin(e) {
     e.preventDefault();
+
+    var errorEl = document.getElementById('login-error');
+    var btn = document.getElementById('login-btn');
+
+    // Guard: ensure mgiAjax (from main.js loaded in wp_footer) is available.
+    if (typeof mgiAjax !== 'function' || typeof mgiData === 'undefined') {
+        errorEl.textContent = 'Page is still loading. Please wait a moment and try again.';
+        errorEl.style.display = 'block';
+        btn.disabled = false;
+        return false;
+    }
+
     var username = document.getElementById('login-username').value;
     var password = document.getElementById('login-password').value;
     var branch = document.getElementById('login-branch').value;
-    var errorEl = document.getElementById('login-error');
-    var btn = document.getElementById('login-btn');
 
     errorEl.style.display = 'none';
     btn.disabled = true;
@@ -87,7 +97,7 @@ function handleLogin(e) {
         btn.innerHTML = '<iconify-icon icon="solar:lock-keyhole-linear"></iconify-icon> Login';
 
         if (err || !res.success) {
-            errorEl.textContent = res && res.data ? res.data.message : 'Login failed';
+            errorEl.textContent = res && res.data ? res.data.message : 'Login failed. Please try again.';
             errorEl.style.display = 'block';
             return;
         }
@@ -97,6 +107,14 @@ function handleLogin(e) {
 
     return false;
 }
+
+// Attach form listener after DOM is ready (ensures wp_footer scripts are loaded).
+document.addEventListener('DOMContentLoaded', function() {
+    var form = document.getElementById('login-form');
+    if (form) {
+        form.addEventListener('submit', handleLogin);
+    }
+});
 </script>
 
 <?php if ( ! MGI_Shortcodes::is_shortcode_mode() ) : ?>
