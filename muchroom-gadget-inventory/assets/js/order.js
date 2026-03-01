@@ -77,7 +77,15 @@ function loadOrderProducts(categoryId) {
         // Attach quantity change listeners
         var qtyInputs = tableBody.querySelectorAll('.qty-input');
         qtyInputs.forEach(function(input) {
+            // Select all on focus so typing replaces the "0" instead of appending
+            input.addEventListener('focus', function() {
+                this.select();
+            });
             input.addEventListener('input', function() {
+                // Strip leading zeros (e.g. "03" → "3")
+                if (this.value.length > 1 && this.value.charAt(0) === '0') {
+                    this.value = parseInt(this.value, 10) || 0;
+                }
                 updateRowTotal(this);
                 updateGrandTotal();
             });
