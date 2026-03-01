@@ -49,6 +49,7 @@ class Muchroom_Gadget_Inventory {
         register_activation_hook( __FILE__, array( 'MGI_Database', 'activate' ) );
         register_deactivation_hook( __FILE__, array( 'MGI_Database', 'deactivate' ) );
 
+        add_action( 'init', array( $this, 'start_session' ), 1 );
         add_action( 'init', array( $this, 'init' ) );
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_assets' ) );
         add_action( 'rest_api_init', array( 'MGI_API', 'register_routes' ) );
@@ -59,6 +60,21 @@ class Muchroom_Gadget_Inventory {
         add_action( 'wp_ajax_nopriv_mgi_action', array( 'MGI_API', 'handle_ajax' ) );
 
         add_action( 'init', array( 'MGI_Shortcodes', 'init' ) );
+    }
+
+    /**
+     * Start PHP session early to prevent "headers already sent" issues.
+     * Scoped to plugin pages and AJAX to avoid overhead on unrelated requests.
+     */
+    public function start_session() {
+        if ( session_id() || headers_sent() ) {
+            return;
+        }
+        $is_mgi_page = isset( $_SERVER['REQUEST_URI'] ) && false !== strpos( $_SERVER['REQUEST_URI'], '/muchroom/' );
+        $is_mgi_ajax = defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_POST['action'] ) && 'mgi_action' === $_POST['action'];
+        if ( $is_mgi_page || $is_mgi_ajax ) {
+            session_start();
+        }
     }
 
     public function init() {

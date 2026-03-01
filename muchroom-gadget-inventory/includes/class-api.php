@@ -46,9 +46,13 @@ class MGI_API {
      * Handle AJAX requests.
      */
     public static function handle_ajax() {
-        check_ajax_referer( 'mgi_nonce', 'nonce' );
-
         $action_type = isset( $_POST['action_type'] ) ? sanitize_text_field( wp_unslash( $_POST['action_type'] ) ) : '';
+
+        // Login uses password-based auth; skip nonce check to prevent
+        // "Login failed" errors caused by stale or cached nonces expiring.
+        if ( 'login' !== $action_type ) {
+            check_ajax_referer( 'mgi_nonce', 'nonce' );
+        }
 
         switch ( $action_type ) {
             case 'login':
