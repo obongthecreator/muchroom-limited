@@ -340,7 +340,6 @@ function refreshCategoriesTable() {
     mgiAjax('get_categories', {}, function(err, res) {
         if (err || !res.success) return;
         var categories = res.data.categories || res.data;
-        // If the response wraps in products key, try direct array
         if (!Array.isArray(categories)) { categories = []; }
         var tbody = document.querySelector('[data-tab-content="categories"] .mgi-table tbody');
         if (!tbody) return;
@@ -397,7 +396,7 @@ function refreshUsersTable() {
 }
 
 // Escape helpers for building HTML/JS strings
-function escH(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+function escH(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function escJ(s) { return String(s).replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, '\\n'); }
 
 // Product CRUD
