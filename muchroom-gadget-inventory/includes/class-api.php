@@ -117,6 +117,20 @@ class MGI_API {
                 wp_send_json_success( array( 'products' => MGI_Products::search_products( $query ) ) );
                 break;
 
+            case 'get_categories':
+                if ( ! MGI_Auth::is_logged_in() ) {
+                    wp_send_json_error( array( 'message' => 'Not authenticated.' ) );
+                }
+                wp_send_json_success( array( 'categories' => MGI_Products::get_categories() ) );
+                break;
+
+            case 'get_users':
+                if ( ! MGI_Auth::is_admin() ) {
+                    wp_send_json_error( array( 'message' => 'Admin access required.' ) );
+                }
+                wp_send_json_success( array( 'users' => MGI_Users::get_all() ) );
+                break;
+
             case 'import_stock':
                 if ( ! MGI_Auth::is_logged_in() ) {
                     wp_send_json_error( array( 'message' => 'Not authenticated.' ) );

@@ -46,9 +46,6 @@ function loadAnalytics() {
 }
 
 function renderAnalytics(data) {
-    var container = document.getElementById('analytics-charts');
-    if (!container) return;
-
     // Update KPI cards
     updateKPIs(data);
 
@@ -117,6 +114,7 @@ function renderSalesChart(data) {
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            animation: { duration: 400 },
             plugins: {
                 legend: { position: 'top' }
             },
@@ -135,7 +133,6 @@ function renderCategoryChart(data) {
 
     var labels = (data.category_sales || []).map(function(d) { return d.category_name; });
     var revenues = (data.category_sales || []).map(function(d) { return parseFloat(d.total_revenue); });
-    var quantities = (data.category_sales || []).map(function(d) { return parseInt(d.total_qty); });
 
     var colors = ['#6C63FF', '#FF6B6B', '#00C48C', '#FFB800', '#8B85FF', '#FF4757', '#2ED573'];
 
@@ -154,6 +151,7 @@ function renderCategoryChart(data) {
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            animation: { duration: 400 },
             plugins: {
                 legend: { display: false }
             },
@@ -186,6 +184,7 @@ function renderPaymentChart(data) {
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            animation: { duration: 400 },
             plugins: {
                 legend: { position: 'bottom' }
             }

@@ -301,6 +301,105 @@ function togglePasswordVisibility(inputId, btn) {
     if (icon) icon.setAttribute('icon', isPassword ? 'solar:eye-linear' : 'solar:eye-closed-linear');
 }
 
+/* ---- Helper: refresh a single admin table via AJAX ---- */
+function refreshProductsTable() {
+    mgiAjax('get_products', {}, function(err, res) {
+        if (err || !res.success) return;
+        var products = res.data.products;
+        var tbody = document.querySelector('[data-tab-content="products"] .mgi-table tbody');
+        if (!tbody) return;
+        var catSelect = document.getElementById('edit-product-category');
+        // Build a category lookup from the select options
+        var catMap = {};
+        if (catSelect) {
+            for (var i = 0; i < catSelect.options.length; i++) {
+                catMap[catSelect.options[i].value] = catSelect.options[i].textContent;
+            }
+        }
+        var html = '';
+        products.forEach(function(p) {
+            var catName = p.category_name || catMap[p.category_id] || '';
+            html += '<tr>';
+            html += '<td>' + escH(p.product_code) + '</td>';
+            html += '<td><strong>' + escH(p.name) + '</strong></td>';
+            html += '<td>' + escH(p.model || '') + '</td>';
+            html += '<td>' + escH(catName) + '</td>';
+            html += '<td class="amount">₦' + Number(p.cost || 0).toLocaleString() + '</td>';
+            html += '<td class="amount">₦' + Number(p.price || 0).toLocaleString() + '</td>';
+            html += '<td>' + (parseInt(p.stock) || 0) + '</td>';
+            html += '<td>';
+            html += '<button class="pill-btn pill-btn-glass btn-text" style="padding:4px 8px;font-size:11px;" onclick="editProduct(' + p.id + ', \'' + escJ(p.product_code) + '\', \'' + escJ(p.name) + '\', \'' + escJ(p.model || '') + '\', \'' + escJ(p.description || '') + '\', ' + (p.category_id || 0) + ', ' + (p.cost || 0) + ', ' + (p.price || 0) + ')"><iconify-icon icon="solar:pen-linear"></iconify-icon></button>';
+            html += ' <button class="pill-btn pill-btn-danger btn-text" style="padding:4px 8px;font-size:11px;" onclick="deleteProduct(' + p.id + ')"><iconify-icon icon="solar:trash-bin-minimalistic-linear"></iconify-icon></button>';
+            html += '</td></tr>';
+        });
+        tbody.innerHTML = html;
+    });
+}
+
+function refreshCategoriesTable() {
+    mgiAjax('get_categories', {}, function(err, res) {
+        if (err || !res.success) return;
+        var categories = res.data.categories || res.data;
+        // If the response wraps in products key, try direct array
+        if (!Array.isArray(categories)) { categories = []; }
+        var tbody = document.querySelector('[data-tab-content="categories"] .mgi-table tbody');
+        if (!tbody) return;
+        var html = '';
+        categories.forEach(function(c) {
+            html += '<tr>';
+            html += '<td><iconify-icon icon="' + escH(c.icon || '') + '"></iconify-icon></td>';
+            html += '<td><strong>' + escH(c.name) + '</strong></td>';
+            html += '<td class="text-muted">' + escH(c.slug || '') + '</td>';
+            html += '<td>';
+            html += '<button class="pill-btn pill-btn-glass btn-text" style="padding:4px 8px;font-size:11px;" onclick="editCategory(' + c.id + ', \'' + escJ(c.name) + '\', \'' + escJ(c.icon || '') + '\')"><iconify-icon icon="solar:pen-linear"></iconify-icon></button>';
+            html += ' <button class="pill-btn pill-btn-danger btn-text" style="padding:4px 8px;font-size:11px;" onclick="deleteCategory(' + c.id + ')"><iconify-icon icon="solar:trash-bin-minimalistic-linear"></iconify-icon></button>';
+            html += '</td></tr>';
+        });
+        tbody.innerHTML = html;
+        // Also update the category dropdown in the product form
+        var catSelect = document.getElementById('edit-product-category');
+        if (catSelect) {
+            catSelect.innerHTML = '';
+            categories.forEach(function(c) {
+                var opt = document.createElement('option');
+                opt.value = c.id;
+                opt.textContent = c.name;
+                catSelect.appendChild(opt);
+            });
+        }
+    });
+}
+
+function refreshUsersTable() {
+    mgiAjax('get_users', {}, function(err, res) {
+        if (err || !res.success) return;
+        var users = res.data.users;
+        var tbody = document.querySelector('[data-tab-content="users"] .mgi-table tbody');
+        if (!tbody) return;
+        var html = '';
+        users.forEach(function(u) {
+            var roleBadge = u.role === 'admin' ? 'badge-warning' : 'badge-success';
+            var statusBadge = parseInt(u.is_active) ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>';
+            html += '<tr>';
+            html += '<td>' + escH(u.username) + '</td>';
+            html += '<td><strong>' + escH(u.full_name) + '</strong></td>';
+            html += '<td><span class="badge ' + roleBadge + '">' + escH(u.role) + '</span></td>';
+            html += '<td>' + escH(u.email || '') + '</td>';
+            html += '<td>' + escH(u.phone || '') + '</td>';
+            html += '<td>' + statusBadge + '</td>';
+            html += '<td>';
+            html += '<button class="pill-btn pill-btn-glass btn-text" style="padding:4px 8px;font-size:11px;" onclick="editUser(' + u.id + ', \'' + escJ(u.username) + '\', \'' + escJ(u.full_name) + '\', \'' + escJ(u.role) + '\', \'' + escJ(u.email || '') + '\', \'' + escJ(u.phone || '') + '\', ' + (parseInt(u.is_active) || 0) + ')"><iconify-icon icon="solar:pen-linear"></iconify-icon></button>';
+            html += ' <button class="pill-btn pill-btn-danger btn-text" style="padding:4px 8px;font-size:11px;" onclick="deleteUser(' + u.id + ')"><iconify-icon icon="solar:trash-bin-minimalistic-linear"></iconify-icon></button>';
+            html += '</td></tr>';
+        });
+        tbody.innerHTML = html;
+    });
+}
+
+// Escape helpers for building HTML/JS strings
+function escH(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+function escJ(s) { return String(s).replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, '\\n'); }
+
 // Product CRUD
 function resetProductForm() {
     document.getElementById('product-modal-title').textContent = 'Add Product';
@@ -340,7 +439,8 @@ function saveProduct(e) {
     }, function(err, res) {
         if (!err && res.success) {
             showToast('Product saved!', 'success');
-            location.reload();
+            closeModal('product-modal');
+            refreshProductsTable();
         } else {
             showToast(res && res.data ? res.data.message : 'Failed', 'error');
         }
@@ -353,7 +453,7 @@ function deleteProduct(id) {
     mgiAjax('delete_product', { product_id: id }, function(err, res) {
         if (!err && res.success) {
             showToast('Product deleted', 'success');
-            location.reload();
+            refreshProductsTable();
         }
     });
 }
@@ -383,7 +483,8 @@ function saveCategory(e) {
     }, function(err, res) {
         if (!err && res.success) {
             showToast('Category saved!', 'success');
-            location.reload();
+            closeModal('category-modal');
+            refreshCategoriesTable();
         } else {
             showToast(res && res.data ? res.data.message : 'Failed', 'error');
         }
@@ -396,7 +497,7 @@ function deleteCategory(id) {
     mgiAjax('delete_category', { category_id: id }, function(err, res) {
         if (!err && res.success) {
             showToast('Category deleted', 'success');
-            location.reload();
+            refreshCategoriesTable();
         }
     });
 }
@@ -441,7 +542,8 @@ function saveUser(e) {
     }, function(err, res) {
         if (!err && res.success) {
             showToast('User saved!', 'success');
-            location.reload();
+            closeModal('user-modal');
+            refreshUsersTable();
         } else {
             showToast(res && res.data ? res.data.message : 'Failed', 'error');
         }
@@ -454,7 +556,7 @@ function deleteUser(id) {
     mgiAjax('delete_user', { user_id: id }, function(err, res) {
         if (!err && res.success) {
             showToast('User deleted', 'success');
-            location.reload();
+            refreshUsersTable();
         }
     });
 }
