@@ -20,13 +20,22 @@ class MGI_Auth {
             return new WP_Error( 'invalid_password', 'Invalid username or password.' );
         }
 
+        // Ensure a session is active.
         if ( ! session_id() ) {
             session_start();
         }
+
+        // Regenerate session ID to prevent fixation and clear stale data.
+        session_regenerate_id( true );
+
         $_SESSION['mgi_staff_id']   = $user->id;
         $_SESSION['mgi_staff_name'] = $user->full_name;
         $_SESSION['mgi_staff_role'] = $user->role;
         $_SESSION['mgi_logged_in']  = true;
+
+        // Flush session data to storage immediately so the next request
+        // (the redirect after login) sees the values reliably.
+        session_write_close();
 
         return $user;
     }
@@ -35,12 +44,24 @@ class MGI_Auth {
         if ( ! session_id() ) {
             session_start();
         }
-        unset(
-            $_SESSION['mgi_staff_id'],
-            $_SESSION['mgi_staff_name'],
-            $_SESSION['mgi_staff_role'],
-            $_SESSION['mgi_logged_in']
-        );
+
+        // Clear session data.
+        $_SESSION = array();
+
+        // Delete the session cookie so the browser discards the old ID.
+        if ( ini_get( 'session.use_cookies' ) ) {
+            $params = session_get_cookie_params();
+            setcookie(
+                session_name(),
+                '',
+                time() - 42000,
+                $params['path'],
+                $params['domain'],
+                $params['secure'],
+                $params['httponly']
+            );
+        }
+
         session_destroy();
     }
 
